@@ -1,65 +1,35 @@
-# Agent 团队工作流（DSH 插件）· 项目根
+# Agent 团队工作流
 
-给 DeepSeek Harness 加一个**角色名册卡片**与 `/team` 命令的完整项目：宿主半 + 客户端半 + 角色资源包 + 生成器 + 门脚本 + 证据。
+让 AI 助手像一支开发团队那样分工干活。
 
-> 2026-10-15 从 `~/Documents/deepseek-harness/default-workspace/` 迁移到此处。
-> 迁移记录与验证证据见 `dsh-team-workflow/evidence/迁移-2026-10-15.md`。
+这是给 DeepSeek Harness 用的一个插件，它带来一套**开发团队角色名册**：产品经理、架构师、后端、前端、智能体、运维、测试、代码审查、合规、资源财务。每个角色都写清了职责、能力边界和该交付的产物，需要哪个就派哪个。
 
-## 目录结构（两部分，缺一不可）
+## 亮点
 
-```
-agent-team-workflow/
-├── dsh-team-plugin/       ← DSH 插件包本体（也是 pnpm pack 的直接来源）
-│   ├── index.js           手写：宿主半（/team 命令、角色名册、配置声明）
-│   ├── client.js          生成：客户端半（页头卡片 + 配置弹窗）
-│   ├── roles.json         生成：角色数据（卡片与名册共用）
-│   ├── package.json       dsh.bundle.patch / dsh.client 声明
-│   ├── cordis.patch.yml   profile 补丁层（挂载条目 team-workflow）
-│   ├── locale/{zh,en}.json  自有命名空间文案
-│   └── CONSTITUTION.md / README.md / ACCEPTANCE.md / install.sh / uninstall.sh
-└── dsh-team-workflow/     ← 资源包与工具链
-    ├── roles/*.md         真源：10 个角色定义
-    ├── skills/           真源：技能清单（含 MISSING-SKILLS.md）
-    ├── _tools/           生成器 + 门脚本 + 反证脚本 + 只读 ASAR 检视器
-    ├── policies/         团队策略钩子（hooks.json 模板 + policy_check.js + ledger.js）
-    ├── evidence/         每轮的实测证据
-    └── docs/ templates/ orchestration/ verification/ ledger/ manifest/
-```
+- **十个角色，随取随用**：不常驻一批 Agent，按需派人；每个角色都明确写着"能做什么、不能做什么、要交出什么"。
+- **一眼看清真实状态**：页头一张卡片列出团队成员和它们的实际运行状态，点某一行直接进入那个成员的会话。
+- **不和官方抢位置**：官方自带的「智能体团队」开着时，它自动让位、什么都不显示；官方关掉时才接管。不用手动来回切插件。
+- **一条命令开工**：`/team` 把角色定义直接变成派发简报，选角色、写任务、开工。
+- **装得干净、卸得干净**：界面、样式、文案全部使用自有命名空间，不占用官方身份，卸载不留残余。
+- **不替你做决定**：不设门控、不做授权校验、不写台账——派谁、派几个、怎么验收，由你和主 Agent 决定。
 
-两个目录必须保持**兄弟关系**：`_tools/*.js` 通过 `../dsh-team-plugin/` 读写产物，`install.sh` 也按脚本自身位置推导路径。
+## 功能
 
-## 真源规则（改之前先读这条）
+| 功能 | 说明 |
+|---|---|
+| 角色名册 | 十个角色的职责、能力边界（只读 / 可写）与产物清单 |
+| `/team` 命令 | 列出全部角色，或生成某个角色的派发简报 |
+| 页头卡片 | 成员列表与真实运行状态，点成员行进入它的会话 |
+| 配置界面 | 六项开关：停用指定角色、角色技能自动加载、路由守卫、任务看板、隐藏未分配角色、紧凑面板；改完即时生效，不用重启 |
+| 中英文界面 | 文案跟随界面语言切换 |
 
-| 文件 | 性质 | 怎么改 |
-|---|---|---|
-| `dsh-team-workflow/roles/*.md`、`skills/` | **真源** | 直接改，然后 `sync-roles-from-pack.js` → `build-client.js` |
-| `dsh-team-plugin/index.js`、`package.json`、`locale/`、`cordis.patch.yml`、`icon.svg` | **手写** | 直接改 |
-| `dsh-team-plugin/client.js`、`roles.json` | **生成物** | **禁止手改**，门 `6c` 会抓（生成器幂等） |
-| `dsh-team-workflow/_tools/build-client.js` | 客户端补丁生成器 | 改界面就改它，再重跑 |
+## 技术实现
 
-## 常用命令
+- **宿主半 + 客户端半**：宿主侧（Node）注册命令、校验配置、把角色名册落盘；客户端侧（浏览器）渲染页头卡片与配置弹窗。两边共用同一份角色数据。
+- **角色只有一个来源**：角色只维护一份数据，客户端界面由生成器从这份数据产出，不允许手写，避免两边说法不一致；生成器对官方客户端包里的关键结构做"必须恰好命中一次"的断言，官方升级导致结构变化时会当场报错，而不是悄悄渲染出一个坏界面。
+- **借官方外壳、用自己身份**：卡片沿用官方客户端包的结构与样式，只把前缀换成自己的，内容层换成自己的角色名册——看着和官方一致，身份完全自有。
+- **让位靠内置机制**：注册时给一个靠后的优先级，官方卡片优先级更高，于是在同一个位置上官方自然胜出，不需要任何运行时检测。
+- **依赖极少**：只依赖官方提供的配置校验库。
+- **自带反证**：关键设计都配了"故意改坏、检查必须报警"的反证脚本，用来证明检查本身不是摆设。
 
-```bash
-cd dsh-team-workflow
-node _tools/sync-roles-from-pack.js      # 角色资源包 → roles.json
-node _tools/build-client.js              # roles.json + 官方 bundle → client.js
-node _tools/verify-acceptance.js         # 验收门（当前 27/27）+ 客户端坐标回归
-node _tools/redcheck-second-ruling.mjs   # C14 反证：21 个变异逐个必须红
-node _tools/inspect-dsh-checkout.js find <子串>   # 只读检视 app.asar
-
-cd ../dsh-team-plugin
-./install.sh                             # 官方通路安装（pnpm add file:<本目录> + 登记组合包）
-./uninstall.sh                           # 卸载（pnpm remove，不做 rm -rf）
-```
-
-## 对外交付
-
-交付包在 `dist/dsh-team-workflow-0.3.0/`，三件：`local-dsh-team-workflow-0.3.0.tgz`（官方 tarball spec）、自带依赖的解压目录、`安装说明.md`。
-重现命令与"为什么解压目录要自带 `node_modules`"（官方对本地目录 spec 用 `link:`、不装依赖）见 `dsh-team-plugin/README.md` 的「对外交付」节。
-
-## 迁移后仍指向旧路径的地方（有意保留）
-
-- `dsh-team-workflow/evidence/**` 里的历史证据：记录当时发生的事，**不改写**（其中出现的 `…/default-workspace/…` 是历史事实）。
-- `~/.dsh/team/ledger/agent-ledger.jsonl`：append-only，永不改写。
-- `~/.dsh/team/authorizations.json` 里 5 条 **已消费**的历史授权（`AUTH-20261013-00x`）：指向 `scratch-delivery/`（未搬迁）与一处已搬走的 `dsh-team-workflow/docs`，保持原样。
-- `~/.dsh/storages/session_projcache/**`、各处 `.bak-*`：缓存与备份，不动。
+在 DeepSeek Harness 的插件页导入这个插件，就可以用上。
