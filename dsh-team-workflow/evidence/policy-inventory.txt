@@ -1,0 +1,92 @@
+======================================================================
+DSH TEAM WORKFLOW / WS-C (policy + ledger layer) — DELIVERED FILE INVENTORY
+======================================================================
+generated-at : 2026-10-13T09:24:13Z
+root         : /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow
+node         : v24.21.0
+
+WRITE SCOPE (as assigned): policies/**, ledger/**, evidence/policy-*
+NOTHING ELSE IN THIS REPOSITORY WAS TOUCHED BY WS-C.
+
+TESTS AT INVENTORY TIME: node policies/tests/run.js -> 64 passed / 0 failed
+                         node policies/tests/bridge-probe.js -> 43 passed / 0 failed
+
+----------------------------------------------------------------------
+path                                               bytes     lines  sha256 (first 16)
+----------------------------------------------------------------------
+policies/hooks.json                                 2586        48  b4f4fe42a5771e2d
+policies/policy_check.js                           50245      1319  07661b1e7bfabff2
+policies/ledger.js                                  8669       244  310a0a4d63ede4d0
+policies/tests/run.js                              23748       612  a1b3e8033457806b
+policies/tests/bridge-probe.js                     13396       265  7d77f3a5e781de25
+policies/mount.patch.yml                            1324        26  ff4d490d96662dcf
+policies/ACTIVATION.md                             10002       183  2d7ef22da6891344
+policies/GAP-ANALYSIS.md                           15267        77  c823f1084195629f
+ledger/README.md                                    8872       179  5057007b55c20c0a
+evidence/policy-tests.txt                          50635       413  f4d1c5b5cb42c060
+evidence/policy-mount-check.txt                     4807        90  fc466bf13f4c0fac
+evidence/policy-bridge-mapping.txt                  4892        85  b0485738c0191d9f
+----------------------------------------------------------------------
+TOTAL (12 files, excluding this inventory)        194443
+
+SELF-REFERENCE: this file, evidence/policy-inventory.txt, is also a delivered
+file. Listing it inside itself would change its own size, so it is excluded from
+the table above; its size and hash are reported at the bottom instead.
+
+----------------------------------------------------------------------
+EXECUTABLE BITS
+----------------------------------------------------------------------
+-rwxr-xr-x@ 1 maxwell  staff   8669 Oct 13 17:13 policies/ledger.js
+-rwxr-xr-x@ 1 maxwell  staff  50245 Oct 13 17:23 policies/policy_check.js
+-rwxr-xr-x@ 1 maxwell  staff  13396 Oct 13 17:18 policies/tests/bridge-probe.js
+-rwxr-xr-x@ 1 maxwell  staff  23748 Oct 13 17:23 policies/tests/run.js
+
+----------------------------------------------------------------------
+FULL PATHS
+----------------------------------------------------------------------
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/hooks.json
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/policy_check.js
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/ledger.js
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/tests/run.js
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/tests/bridge-probe.js
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/mount.patch.yml
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/ACTIVATION.md
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/GAP-ANALYSIS.md
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/ledger/README.md
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/evidence/policy-tests.txt
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/evidence/policy-mount-check.txt
+/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/evidence/policy-bridge-mapping.txt
+
+----------------------------------------------------------------------
+READ-ONLY RESOURCE PACKAGE (never modified)
+----------------------------------------------------------------------
+/Users/maxwell/Downloads/OMP团队开发工作流-DeepSeekHarness复刻包-20261013
+  sources/omp/extension/index.ts                (semantic reference only)
+  sources/omp/extension-tests/policy.test.ts    (5 original test cases)
+  sources/omp/RULES.md
+  sources/omp/skills/agent-usage-ledger/SKILL.md
+  sources/omp/skills/docker-artifact-safety/SKILL.md
+
+----------------------------------------------------------------------
+~/.dsh STATE
+----------------------------------------------------------------------
+~/.dsh/profiles/desktop/cordis.patch.yml : NOT MODIFIED (mtime still 2026-10-13 15:52)
+~/.dsh/team/                             : NEVER CREATED by WS-C
+~/.dsh/profiles/ws-c-probe/              : disposable probe profile, DELETED at end of run
+
+----------------------------------------------------------------------
+WHAT WAS NOT VERIFIED
+----------------------------------------------------------------------
+* No end-to-end LIVE hook firing inside a running DSH agent loop. The desktop
+  profile cannot be CLI-booted, and booting a headless profile would write
+  session state under ~/.dsh outside the permitted disposable-profile directory.
+  Everything up to the harness's own tools/pre-execute waterfall IS verified:
+  the shipped parser accepts policies/hooks.json, the shipped matcher routes the
+  real DSH tool names, and the real hook process's exit 2 folds to decision
+  'deny' with its stderr as the reason (evidence/policy-bridge-mapping.txt).
+
+----------------------------------------------------------------------
+evidence/policy-inventory.txt (this file)  bytes=5760
+  sha256 (first 16): ba7bd7d649bfd8a4
+  (measured immediately before this line was appended)
+----------------------------------------------------------------------

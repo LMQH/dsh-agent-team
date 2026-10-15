@@ -1,0 +1,112 @@
+[
+  {
+    "id": "AUTH-20261014-101",
+    "type": "dispatch",
+    "role": "pm",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 pm 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  },
+  {
+    "id": "AUTH-20261014-102",
+    "type": "dispatch",
+    "role": "architect",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 architect 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  },
+  {
+    "id": "AUTH-20261014-103",
+    "type": "dispatch",
+    "role": "backend",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 backend 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  },
+  {
+    "id": "AUTH-20261014-104",
+    "type": "dispatch",
+    "role": "frontend",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 frontend 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  },
+  {
+    "id": "AUTH-20261014-105",
+    "type": "dispatch",
+    "role": "harness",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 harness 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  },
+  {
+    "id": "AUTH-20261014-106",
+    "type": "dispatch",
+    "role": "devops",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 devops 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  },
+  {
+    "id": "AUTH-20261014-107",
+    "type": "dispatch",
+    "role": "qa",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 qa 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  },
+  {
+    "id": "AUTH-20261014-108",
+    "type": "dispatch",
+    "role": "code-review",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 code-review 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  },
+  {
+    "id": "AUTH-20261014-109",
+    "type": "dispatch",
+    "role": "compliance",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 compliance 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  },
+  {
+    "id": "AUTH-20261014-110",
+    "type": "dispatch",
+    "role": "quota-control",
+    "scope": [
+      "/Users/maxwell/workspace/code_space/agent-team-workflow/**"
+    ],
+    "issued_by": "human:maxwell",
+    "note": "已签发：human:maxwell 于 2026-10-14（用户裁决「签全部 10 个角色」；代理只做记录，未自授权）。 签发后语义：允许把 quota-control 派发到 /Users/maxwell/workspace/code_space/agent-team-workflow 全域（spawn_teammate 没有 write_scopes 入参，授权要求恒为任务合同 allowed_paths 全集）。 签发方式：把 issued_by 填成你自己的标识（如 human:maxwell），然后运行 node _tools/apply-authorizations.js（先 --dry-run 可预览）。",
+    "issued_at": "2026-10-14"
+  }
+]

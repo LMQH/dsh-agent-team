@@ -1,0 +1,645 @@
+{
+  "tool": "validate_skills.js",
+  "skillsRoot": "/Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/skills",
+  "expectedSkillCount": 24,
+  "discoveredSkillCount": 24,
+  "deliveredFileCount": 39,
+  "deliveredBytes": 250383,
+  "skills": [
+    {
+      "name": "agent-usage-ledger",
+      "dirName": "agent-usage-ledger",
+      "path": "agent-usage-ledger/SKILL.md",
+      "discoverablePath": "<root>/agent-usage-ledger/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 311,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 3470,
+      "bytes": 3999,
+      "resources": []
+    },
+    {
+      "name": "anti-fake-testing",
+      "dirName": "anti-fake-testing",
+      "path": "anti-fake-testing/SKILL.md",
+      "discoverablePath": "<root>/anti-fake-testing/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 60,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 4552,
+      "bytes": 8929,
+      "resources": []
+    },
+    {
+      "name": "architecture-delivery",
+      "dirName": "architecture-delivery",
+      "path": "architecture-delivery/SKILL.md",
+      "discoverablePath": "<root>/architecture-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 102,
+      "whenToUse": false,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 2581,
+      "bytes": 2735,
+      "resources": []
+    },
+    {
+      "name": "backend-delivery",
+      "dirName": "backend-delivery",
+      "path": "backend-delivery/SKILL.md",
+      "discoverablePath": "<root>/backend-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 95,
+      "whenToUse": false,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 2379,
+      "bytes": 2521,
+      "resources": []
+    },
+    {
+      "name": "code-review-defect-patterns",
+      "dirName": "code-review-defect-patterns",
+      "path": "code-review-defect-patterns/SKILL.md",
+      "discoverablePath": "<root>/code-review-defect-patterns/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 47,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 3342,
+      "bytes": 6097,
+      "resources": [
+        "references/architecture-decision-conflicts.md"
+      ]
+    },
+    {
+      "name": "code-review-delivery",
+      "dirName": "code-review-delivery",
+      "path": "code-review-delivery/SKILL.md",
+      "discoverablePath": "<root>/code-review-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 87,
+      "whenToUse": false,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 377,
+      "bytes": 515,
+      "resources": []
+    },
+    {
+      "name": "compliance-delivery",
+      "dirName": "compliance-delivery",
+      "path": "compliance-delivery/SKILL.md",
+      "discoverablePath": "<root>/compliance-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 123,
+      "whenToUse": false,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 363,
+      "bytes": 536,
+      "resources": []
+    },
+    {
+      "name": "cross-team-contract-alignment",
+      "dirName": "cross-team-contract-alignment",
+      "path": "cross-team-contract-alignment/SKILL.md",
+      "discoverablePath": "<root>/cross-team-contract-alignment/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 60,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 2367,
+      "bytes": 5562,
+      "resources": []
+    },
+    {
+      "name": "database-design-checklist",
+      "dirName": "database-design-checklist",
+      "path": "database-design-checklist/SKILL.md",
+      "discoverablePath": "<root>/database-design-checklist/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 40,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 5264,
+      "bytes": 9290,
+      "resources": []
+    },
+    {
+      "name": "docker-artifact-safety",
+      "dirName": "docker-artifact-safety",
+      "path": "docker-artifact-safety/SKILL.md",
+      "discoverablePath": "<root>/docker-artifact-safety/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 173,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 6969,
+      "bytes": 7495,
+      "resources": []
+    },
+    {
+      "name": "frontend-delivery",
+      "dirName": "frontend-delivery",
+      "path": "frontend-delivery/SKILL.md",
+      "discoverablePath": "<root>/frontend-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 108,
+      "whenToUse": false,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 1863,
+      "bytes": 2019,
+      "resources": []
+    },
+    {
+      "name": "harness-delivery",
+      "dirName": "harness-delivery",
+      "path": "harness-delivery/SKILL.md",
+      "discoverablePath": "<root>/harness-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 106,
+      "whenToUse": false,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 1731,
+      "bytes": 1884,
+      "resources": []
+    },
+    {
+      "name": "hermes-obsidian",
+      "dirName": "hermes-obsidian",
+      "path": "hermes-obsidian/SKILL.md",
+      "discoverablePath": "<root>/hermes-obsidian/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 141,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 1997,
+      "bytes": 2510,
+      "resources": [
+        "scripts/wiki_dedup.py",
+        "scripts/wiki_ingest.py",
+        "scripts/wiki_lint.py"
+      ]
+    },
+    {
+      "name": "operations-delivery",
+      "dirName": "operations-delivery",
+      "path": "operations-delivery/SKILL.md",
+      "discoverablePath": "<root>/operations-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 104,
+      "whenToUse": false,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 4486,
+      "bytes": 4725,
+      "resources": []
+    },
+    {
+      "name": "pm-requirements",
+      "dirName": "pm-requirements",
+      "path": "pm-requirements/SKILL.md",
+      "discoverablePath": "<root>/pm-requirements/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 72,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 6683,
+      "bytes": 13215,
+      "resources": []
+    },
+    {
+      "name": "product-delivery",
+      "dirName": "product-delivery",
+      "path": "product-delivery/SKILL.md",
+      "discoverablePath": "<root>/product-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 85,
+      "whenToUse": false,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 349,
+      "bytes": 481,
+      "resources": []
+    },
+    {
+      "name": "qa-delivery",
+      "dirName": "qa-delivery",
+      "path": "qa-delivery/SKILL.md",
+      "discoverablePath": "<root>/qa-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 151,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 2856,
+      "bytes": 3214,
+      "resources": []
+    },
+    {
+      "name": "quota-governance",
+      "dirName": "quota-governance",
+      "path": "quota-governance/SKILL.md",
+      "discoverablePath": "<root>/quota-governance/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 92,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 322,
+      "bytes": 668,
+      "resources": []
+    },
+    {
+      "name": "react-best-practices",
+      "dirName": "react-best-practices",
+      "path": "react-best-practices/SKILL.md",
+      "discoverablePath": "<root>/react-best-practices/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 57,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 9120,
+      "bytes": 13380,
+      "resources": []
+    },
+    {
+      "name": "security-test-matrix",
+      "dirName": "security-test-matrix",
+      "path": "security-test-matrix/SKILL.md",
+      "discoverablePath": "<root>/security-test-matrix/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 69,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 3410,
+      "bytes": 7398,
+      "resources": []
+    },
+    {
+      "name": "team-workflow",
+      "dirName": "team-workflow",
+      "path": "team-workflow/SKILL.md",
+      "discoverablePath": "<root>/team-workflow/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 92,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 16106,
+      "bytes": 16768,
+      "resources": []
+    },
+    {
+      "name": "technical-design-delivery",
+      "dirName": "technical-design-delivery",
+      "path": "technical-design-delivery/SKILL.md",
+      "discoverablePath": "<root>/technical-design-delivery/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 170,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 3330,
+      "bytes": 3758,
+      "resources": []
+    },
+    {
+      "name": "verification-before-completion",
+      "dirName": "verification-before-completion",
+      "path": "verification-before-completion/SKILL.md",
+      "discoverablePath": "<root>/verification-before-completion/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 46,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 3441,
+      "bytes": 6805,
+      "resources": []
+    },
+    {
+      "name": "web-architecture-patterns",
+      "dirName": "web-architecture-patterns",
+      "path": "web-architecture-patterns/SKILL.md",
+      "discoverablePath": "<root>/web-architecture-patterns/SKILL.md",
+      "dirNameMatchesFrontmatterName": true,
+      "kebabCase": true,
+      "unique": true,
+      "descriptionChars": 49,
+      "whenToUse": true,
+      "modelInvocable": true,
+      "userInvocable": true,
+      "bodyChars": 5382,
+      "bytes": 9937,
+      "resources": [
+        "references/api-platform-compatibility.md",
+        "references/demo-frontend-with-docker.md",
+        "references/html-to-react-spa-refactor.md",
+        "references/proxy-aware-adapters.md"
+      ]
+    }
+  ],
+  "rootLevelMarkdown": [
+    "CONVERSION-NOTES.md",
+    "MISSING-SKILLS.md"
+  ],
+  "nonSkillDirectories": [
+    "_tools"
+  ],
+  "danglingSkillFiles": [],
+  "stubSkills": [],
+  "unresolvedResourcePaths": [],
+  "unreferencedResources": [
+    "hermes-obsidian/SKILL.md :: tests/test_wiki_lint.py",
+    "web-architecture-patterns/SKILL.md :: references/dual-platform-html-test-tool.md",
+    "web-architecture-patterns/SKILL.md :: references/kling-ai-api.md",
+    "web-architecture-patterns/SKILL.md :: references/new-api-videos-endpoint.md"
+  ],
+  "forbiddenPathHits": [],
+  "notConfiguredMarkerLines": [
+    {
+      "file": "docker-artifact-safety/SKILL.md",
+      "line": 37,
+      "pattern": "source-user-path"
+    },
+    {
+      "file": "hermes-obsidian/SKILL.md",
+      "line": 13,
+      "pattern": "source-user-path"
+    },
+    {
+      "file": "operations-delivery/SKILL.md",
+      "line": 33,
+      "pattern": "source-user-path"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "code": "root-markdown-skipped",
+      "message": "CONVERSION-NOTES.md: scanned by the platform as a candidate single-file skill, then skipped (no valid frontmatter). Harmless; the mandated filename keeps it here."
+    },
+    {
+      "code": "root-markdown-skipped",
+      "message": "MISSING-SKILLS.md: scanned by the platform as a candidate single-file skill, then skipped (no valid frontmatter). Harmless; the mandated filename keeps it here."
+    },
+    {
+      "code": "unreferenced-resource",
+      "message": "hermes-obsidian/SKILL.md: resource \"tests/test_wiki_lint.py\" is delivered but not referenced by SKILL.md"
+    },
+    {
+      "code": "unreferenced-resource",
+      "message": "web-architecture-patterns/SKILL.md: resource \"references/dual-platform-html-test-tool.md\" is delivered but not referenced by SKILL.md"
+    },
+    {
+      "code": "unreferenced-resource",
+      "message": "web-architecture-patterns/SKILL.md: resource \"references/kling-ai-api.md\" is delivered but not referenced by SKILL.md"
+    },
+    {
+      "code": "unreferenced-resource",
+      "message": "web-architecture-patterns/SKILL.md: resource \"references/new-api-videos-endpoint.md\" is delivered but not referenced by SKILL.md"
+    }
+  ],
+  "infos": [
+    {
+      "code": "non-skill-directories",
+      "message": "directories without SKILL.md (ignored by discovery): _tools"
+    },
+    {
+      "code": "not-configured-markers",
+      "message": "3 source-local/host path line(s) explicitly marked \"not configured\""
+    }
+  ],
+  "files": [
+    {
+      "path": "CONVERSION-NOTES.md",
+      "bytes": 26745
+    },
+    {
+      "path": "MISSING-SKILLS.md",
+      "bytes": 9383
+    },
+    {
+      "path": "_tools/validate_skills.js",
+      "bytes": 20291
+    },
+    {
+      "path": "agent-usage-ledger/SKILL.md",
+      "bytes": 3999
+    },
+    {
+      "path": "anti-fake-testing/SKILL.md",
+      "bytes": 8929
+    },
+    {
+      "path": "architecture-delivery/SKILL.md",
+      "bytes": 2735
+    },
+    {
+      "path": "backend-delivery/SKILL.md",
+      "bytes": 2521
+    },
+    {
+      "path": "code-review-defect-patterns/SKILL.md",
+      "bytes": 6097
+    },
+    {
+      "path": "code-review-defect-patterns/references/architecture-decision-conflicts.md",
+      "bytes": 2692
+    },
+    {
+      "path": "code-review-delivery/SKILL.md",
+      "bytes": 515
+    },
+    {
+      "path": "compliance-delivery/SKILL.md",
+      "bytes": 536
+    },
+    {
+      "path": "cross-team-contract-alignment/SKILL.md",
+      "bytes": 5562
+    },
+    {
+      "path": "database-design-checklist/SKILL.md",
+      "bytes": 9290
+    },
+    {
+      "path": "docker-artifact-safety/SKILL.md",
+      "bytes": 7495
+    },
+    {
+      "path": "frontend-delivery/SKILL.md",
+      "bytes": 2019
+    },
+    {
+      "path": "harness-delivery/SKILL.md",
+      "bytes": 1884
+    },
+    {
+      "path": "hermes-obsidian/SKILL.md",
+      "bytes": 2510
+    },
+    {
+      "path": "hermes-obsidian/scripts/wiki_dedup.py",
+      "bytes": 2149
+    },
+    {
+      "path": "hermes-obsidian/scripts/wiki_ingest.py",
+      "bytes": 5876
+    },
+    {
+      "path": "hermes-obsidian/scripts/wiki_lint.py",
+      "bytes": 4122
+    },
+    {
+      "path": "hermes-obsidian/tests/test_wiki_lint.py",
+      "bytes": 1297
+    },
+    {
+      "path": "operations-delivery/SKILL.md",
+      "bytes": 4725
+    },
+    {
+      "path": "pm-requirements/SKILL.md",
+      "bytes": 13215
+    },
+    {
+      "path": "product-delivery/SKILL.md",
+      "bytes": 481
+    },
+    {
+      "path": "qa-delivery/SKILL.md",
+      "bytes": 3214
+    },
+    {
+      "path": "quota-governance/SKILL.md",
+      "bytes": 668
+    },
+    {
+      "path": "react-best-practices/SKILL.md",
+      "bytes": 13380
+    },
+    {
+      "path": "security-test-matrix/SKILL.md",
+      "bytes": 7398
+    },
+    {
+      "path": "team-workflow/SKILL.md",
+      "bytes": 16768
+    },
+    {
+      "path": "technical-design-delivery/SKILL.md",
+      "bytes": 3758
+    },
+    {
+      "path": "verification-before-completion/SKILL.md",
+      "bytes": 6805
+    },
+    {
+      "path": "web-architecture-patterns/SKILL.md",
+      "bytes": 9937
+    },
+    {
+      "path": "web-architecture-patterns/references/api-platform-compatibility.md",
+      "bytes": 3713
+    },
+    {
+      "path": "web-architecture-patterns/references/demo-frontend-with-docker.md",
+      "bytes": 4522
+    },
+    {
+      "path": "web-architecture-patterns/references/dual-platform-html-test-tool.md",
+      "bytes": 6859
+    },
+    {
+      "path": "web-architecture-patterns/references/html-to-react-spa-refactor.md",
+      "bytes": 7675
+    },
+    {
+      "path": "web-architecture-patterns/references/kling-ai-api.md",
+      "bytes": 3628
+    },
+    {
+      "path": "web-architecture-patterns/references/new-api-videos-endpoint.md",
+      "bytes": 4348
+    },
+    {
+      "path": "web-architecture-patterns/references/proxy-aware-adapters.md",
+      "bytes": 12642
+    }
+  ],
+  "ok": true,
+  "errorCount": 0,
+  "warningCount": 6
+}
+
+validate_skills.js: OK — 24 skills, 39 files, 250383 bytes, 6 warning(s)
+  WARN  [root-markdown-skipped] CONVERSION-NOTES.md: scanned by the platform as a candidate single-file skill, then skipped (no valid frontmatter). Harmless; the mandated filename keeps it here.
+  WARN  [root-markdown-skipped] MISSING-SKILLS.md: scanned by the platform as a candidate single-file skill, then skipped (no valid frontmatter). Harmless; the mandated filename keeps it here.
+  WARN  [unreferenced-resource] hermes-obsidian/SKILL.md: resource "tests/test_wiki_lint.py" is delivered but not referenced by SKILL.md
+  WARN  [unreferenced-resource] web-architecture-patterns/SKILL.md: resource "references/dual-platform-html-test-tool.md" is delivered but not referenced by SKILL.md
+  WARN  [unreferenced-resource] web-architecture-patterns/SKILL.md: resource "references/kling-ai-api.md" is delivered but not referenced by SKILL.md
+  WARN  [unreferenced-resource] web-architecture-patterns/SKILL.md: resource "references/new-api-videos-endpoint.md" is delivered but not referenced by SKILL.md

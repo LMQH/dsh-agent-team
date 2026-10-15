@@ -1,0 +1,9 @@
+# 源包静态完整性（由 Lead 执行）
+# 时间: 2026-10-13T09:12:04Z
+# 命令: shasum -a 256 -c sources/SHA256SUMS.txt
+sources/shared/skills/web-architecture-patterns/references/kling-ai-api.md: OK
+sources/shared/skills/web-architecture-patterns/references/new-api-videos-endpoint.md: OK
+sources/shared/skills/web-architecture-patterns/references/proxy-aware-adapters.md: OK
+# exit_code: 0
+# 条目总数: 51
+# 敏感文件扫描: 0 个命中

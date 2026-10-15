@@ -1,0 +1,13 @@
+# install.sh 挂载形式组合校验（由 Lead 执行，与 install.sh 实际写入内容逐字一致）
+# 时间: 2026-10-13T09:27:29Z
+# 命令 1: dsh --profile dsh-mountcheck --from-default-profile headless --dump-config   -> exit 0
+# 命令 2: dsh --profile dsh-mountcheck --patch /tmp/mountcheck.patch.yml --dump-config -> exit 0
+# stderr: (空)
+# 挂载条目出现于合成树:
+381:- id: hooks-claude-code
+382:  name: '@deepseek-ai/dsh-hooks-claude-code'
+383-  config:
+384-    configPath: /Users/maxwell/.dsh/team/hooks.json
+385-    defaultTimeoutMs: 10000
+# 合成树顶层条目数: 97
+# 对比: 裸 '- id:' 形式被拒绝（WS-C 负例，见 evidence/policy-mount-check.txt）

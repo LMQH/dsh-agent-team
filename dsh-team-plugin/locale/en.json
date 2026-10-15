@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Agent Team Workflow",
+    "description": "The pack's 10 development roles with their capability boundaries (read-only/writable), dispatched on demand; roles are not resident."
+  }
+}

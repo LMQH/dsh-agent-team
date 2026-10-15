@@ -1,0 +1,211 @@
+registry_version: 1
+source: "sources/omp/skills/team-workflow/SKILL.md — Team display names 表（15 个角色）"
+scope: "DSH 角色层注册表。10 个角色有本地定义文件（roles/<id>.md），5 个角色无本地定义，只以 dsh-builtin-substitute 存在。"
+status_values: [local-definition, dsh-builtin-substitute]
+type_values: [read-only, implementation, review, mechanical, general]
+roles:
+  - id: pm
+    display_name: 产品经理
+    type: read-only
+    status: local-definition
+    spawns: false
+    local_definition: roles/pm.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, product-delivery, pm-requirements, cross-team-contract-alignment, hermes-obsidian]
+    bound_skills: [team-workflow, product-delivery, pm-requirements, cross-team-contract-alignment, hermes-obsidian]
+    dangling_skills: []
+    skill_reference_status: bound
+    dsh_substitute: null
+    notes: "源 agents/pm.md。model 别名 @team_product 只表示角色映射，不推断提供商、不复制凭据。"
+  - id: architect
+    display_name: 架构师
+    type: read-only
+    status: local-definition
+    spawns: false
+    local_definition: roles/architect.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, architecture-delivery, cross-team-contract-alignment, database-design-checklist, web-architecture-patterns, hermes-obsidian]
+    bound_skills: [team-workflow, architecture-delivery, cross-team-contract-alignment, database-design-checklist, web-architecture-patterns, hermes-obsidian]
+    dangling_skills: []
+    skill_reference_status: bound
+    dsh_substitute: null
+    notes: "源 agents/architect.md。model 别名 @team_architecture 仅为映射。"
+  - id: backend
+    display_name: 后端开发工程师
+    type: implementation
+    status: local-definition
+    spawns: false
+    local_definition: roles/backend.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, backend-delivery, database-design-checklist, web-architecture-patterns, hermes-obsidian]
+    bound_skills: [team-workflow, backend-delivery, database-design-checklist, web-architecture-patterns, hermes-obsidian]
+    dangling_skills: []
+    skill_reference_status: bound
+    dsh_substitute: null
+    notes: "源 tools 含 lsp，DSH 无该工具，未声明。model 别名 @team_implementation 仅为映射。"
+  - id: frontend
+    display_name: 前端开发工程师
+    type: implementation
+    status: local-definition
+    spawns: false
+    local_definition: roles/frontend.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, frontend-delivery, react-best-practices, react-page-implementation, hermes-obsidian]
+    bound_skills: [team-workflow, frontend-delivery, react-best-practices, hermes-obsidian]
+    dangling_skills: [react-page-implementation]
+    skill_reference_status: bound-with-dangling
+    dsh_substitute: null
+    notes: "react-page-implementation 在源包内不存在 SKILL.md（03-来源与差距.md 已列缺口）；已解除悬空绑定，不新建空壳技能。源 tools 含 lsp，DSH 无该工具。"
+  - id: harness
+    display_name: 智能体开发工程师
+    type: implementation
+    status: local-definition
+    spawns: false
+    local_definition: roles/harness.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, harness-delivery, cross-team-contract-alignment, web-architecture-patterns, hermes-obsidian]
+    bound_skills: [team-workflow, harness-delivery, cross-team-contract-alignment, web-architecture-patterns, hermes-obsidian]
+    dangling_skills: []
+    skill_reference_status: bound
+    dsh_substitute: null
+    notes: "源 tools 含 lsp，DSH 无该工具，未声明。model 别名 @team_implementation 仅为映射。"
+  - id: devops
+    display_name: 运维工程师
+    type: implementation
+    status: local-definition
+    spawns: false
+    local_definition: roles/devops.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, operations-delivery, docker-artifact-safety, hermes-obsidian]
+    bound_skills: [team-workflow, operations-delivery, docker-artifact-safety, hermes-obsidian]
+    dangling_skills: []
+    skill_reference_status: bound
+    dsh_substitute: null
+    notes: "源正文引用 ~/.omp/agent/RULES.md；DSH 中该规则层由项目指令文件承载，roles/devops.md 不假定该路径存在。model 别名 @team_operations 仅为映射。"
+  - id: qa
+    display_name: 测试工程师
+    type: review
+    status: local-definition
+    spawns: false
+    local_definition: roles/qa.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, qa-delivery, verification-before-completion, anti-fake-testing, hermes-obsidian]
+    bound_skills: [team-workflow, qa-delivery, verification-before-completion, anti-fake-testing, hermes-obsidian]
+    dangling_skills: []
+    skill_reference_status: bound
+    dsh_substitute: null
+    notes: "独立 QA 门。model 别名 @team_quality 仅为映射。"
+  - id: code-review
+    display_name: 代码审查专员
+    type: review
+    status: local-definition
+    spawns: false
+    local_definition: roles/code-review.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, code-review-delivery, branch-diff-static-review, code-review-defect-patterns, hermes-obsidian]
+    bound_skills: [team-workflow, code-review-delivery, code-review-defect-patterns, hermes-obsidian]
+    dangling_skills: [branch-diff-static-review]
+    skill_reference_status: bound-with-dangling
+    dsh_substitute: null
+    notes: "branch-diff-static-review 在源包内不存在 SKILL.md（03-来源与差距.md 已列缺口）；已解除悬空绑定，不新建空壳技能。"
+  - id: reviewer
+    display_name: 技术审查专员
+    type: review
+    status: dsh-builtin-substitute
+    spawns: false
+    local_definition: null
+    local_definition_imported: false
+    skill_bindings: []
+    bound_skills: []
+    dangling_skills: []
+    skill_reference_status: not-applicable
+    dsh_substitute: "复用本包 roles/code-review.md 提示合同，另起一个独立 teammate 实例（spawn_teammate）承担技术审查；不得由实现 owner 顶替。"
+    inherits_from: code-review
+    notes: "源 team-workflow 角色表列有『技术审查专员 / reviewer』，但本机 OMP agents/ 目录没有对应角色定义；本包未导入本地角色定义（no local role definition was imported），也未声明源侧自动加载技能。"
+  - id: compliance
+    display_name: 合规审查专员
+    type: review
+    status: local-definition
+    spawns: false
+    local_definition: roles/compliance.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, compliance-delivery, security-test-matrix, hermes-obsidian]
+    bound_skills: [team-workflow, compliance-delivery, security-test-matrix, hermes-obsidian]
+    dangling_skills: []
+    skill_reference_status: bound
+    dsh_substitute: null
+    notes: "治理 / 合规独立门。model 别名 @team_governance 仅为映射。"
+  - id: security-reviewer
+    display_name: 安全审查专员
+    type: review
+    status: dsh-builtin-substitute
+    spawns: false
+    local_definition: null
+    local_definition_imported: false
+    skill_bindings: []
+    bound_skills: []
+    dangling_skills: []
+    skill_reference_status: not-applicable
+    dsh_substitute: "复用本包 roles/compliance.md 提示合同 + security-test-matrix 技能，另起一个独立 teammate 实例做安全专项审查。"
+    inherits_from: compliance
+    notes: "源 team-workflow 角色表列有『安全审查专员 / security-reviewer』，但本机 OMP agents/ 目录没有对应角色定义；本包未导入本地角色定义。"
+  - id: scout
+    display_name: 代码探查专员
+    type: read-only
+    status: dsh-builtin-substitute
+    spawns: false
+    local_definition: null
+    local_definition_imported: false
+    skill_bindings: []
+    bound_skills: []
+    dangling_skills: []
+    skill_reference_status: not-applicable
+    dsh_substitute: "用 subagent 派发只读探查，仅 read / grep / glob，无写入范围（write_scopes 为空），产出事实清单供 Lead 与 owner 参考。"
+    inherits_from: null
+    notes: "源 team-workflow 角色表列有『代码探查专员 / scout』，但本机 OMP agents/ 目录没有对应角色定义；本包未导入本地角色定义。"
+  - id: quota-control
+    display_name: 资源财务专员
+    type: read-only
+    status: local-definition
+    spawns: false
+    local_definition: roles/quota-control.md
+    local_definition_imported: true
+    skill_bindings: [team-workflow, quota-governance, hermes-obsidian]
+    bound_skills: [team-workflow, quota-governance, hermes-obsidian]
+    dangling_skills: []
+    skill_reference_status: bound
+    dsh_substitute: null
+    notes: "治理分析角色，只读工具；用量台账 hook 在 DSH 是否可用未经验证，本包不声称已实现。model 别名 @team_governance 仅为映射。"
+  - id: sonic
+    display_name: 自动化操作员
+    type: mechanical
+    status: dsh-builtin-substitute
+    spawns: false
+    local_definition: null
+    local_definition_imported: false
+    skill_bindings: []
+    bound_skills: []
+    dangling_skills: []
+    skill_reference_status: not-applicable
+    dsh_substitute: "由 Lead 直接执行，或用 subagent 按逐条命令清单执行机械步骤；每条命令与每项破坏性动作仍需用户针对该确切清单明确授权。"
+    inherits_from: null
+    notes: "源 team-workflow 角色表列有『自动化操作员 / sonic』，但本机 OMP agents/ 目录没有对应角色定义；本包未导入本地角色定义。该替代不授予任何超出用户授权的权限。"
+  - id: task
+    display_name: 通用开发工程师
+    type: general
+    status: dsh-builtin-substitute
+    spawns: false
+    local_definition: null
+    local_definition_imported: false
+    skill_bindings: []
+    bound_skills: []
+    dangling_skills: []
+    skill_reference_status: not-applicable
+    dsh_substitute: "用 spawn_teammate / subagent 派发通用成员，附完整任务合同、允许路径与 independent reviewer；适用性最弱的兜底角色。"
+    inherits_from: null
+    notes: "源 team-workflow 角色表列有『通用开发工程师 / task』，但本机 OMP agents/ 目录没有对应角色定义；本包未导入本地角色定义。使用时应优先选择更专门的 10 个本地角色。"
+notes:
+  - "本注册表的 10 个 local-definition 与 5 个 dsh-builtin-substitute 之和等于源 team-workflow 角色表的 15 个角色；不得把 10 份专属角色文件误报为 15 份。"
+  - "spawns: false 对所有角色均为合同声明（源文件中 10 个角色均为 spawns: false）。DSH 是否可按成员禁用 spawn 工具未经验证，本包不作强制声明。"
+  - "hermes-obsidian 在 10 个本地角色中均被源定义为自动加载技能；其 vault 流程在知识库未配置前处于惰性状态（inert），见各角色文件的『知识库（vault）访问规则』。"
+  - "write_scopes 只是 advisory 提示，DSH 不自动强制、不阻止重叠写入；DSH 也不自动释放任务所有权，不提供按角色的 OS 沙箱。"

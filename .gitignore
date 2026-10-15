@@ -1,0 +1,10 @@
+# 依赖
+node_modules/
+# 系统噪声
+.DS_Store
+# 备份文件
+*.bak-*
+*.bak
+# 交付物：只入库官方 tarball；解压目录不入库
+# （tarball 内只有本插件的 9 个文件；解压目录额外含第三方依赖副本）
+dist/*/dsh-team-workflow/

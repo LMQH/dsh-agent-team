@@ -1,0 +1,432 @@
+
+=== ALLOWED — ordinary workspace writes ===
+[PASS] (a) workspace write PASS
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/src/app.js","content":"export {};\n"},"tool_use_id":"tu-1"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+       ok   stdout carries no decision JSON
+[PASS] (a2) workspace edit PASS (relative path, resolved against cwd)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"edit","tool_input":{"file_path":"src/ok.js","old_string":"// ok","new_string":"// still ok"},"tool_use_id":"tu-2"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (a3) workspace write through a benign symlink PASS
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/link-to-ok","content":"// via link\n"},"tool_use_id":"tu-3"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+
+=== BLOCKED — secret-bearing paths ===
+[PASS] (b) .env write BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/.env","content":"A=1\n"},"tool_use_id":"tu-4"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"SECRET_ENV","tool":"write","rule":"secret.env-file","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/.env","auth":null,"reason":"Refusing to write the secret-bearing environment file \".env\". Team policy blocks .env and .env.* at the tool layer; write a documented template (.env.example) instead, or have the human edit the real file outside the agent. (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/.env)"}
+       ok   exit code === 2
+       ok   deny code === SECRET_ENV
+[PASS] (c) .env via `..` traversal BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/.env","content":"A=1\n"},"tool_use_id":"tu-5"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"SECRET_ENV","tool":"write","rule":"secret.env-file","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/.env","auth":null,"reason":"Refusing to write the secret-bearing environment file \".env\". Team policy blocks .env and .env.* at the tool layer; write a documented template (.env.example) instead, or have the human edit the real file outside the agent. (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/.env)"}
+       ok   exit code === 2
+       ok   deny code === SECRET_ENV
+[PASS] (d) .env via a symlink BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/link-to-env","content":"A=1\n"},"tool_use_id":"tu-6"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"SECRET_ENV","tool":"write","rule":"secret.env-file","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/link-to-env","auth":null,"reason":"Refusing to write the secret-bearing environment file \".env\". Team policy blocks .env and .env.* at the tool layer; write a documented template (.env.example) instead, or have the human edit the real file outside the agent. (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/.env)"}
+       ok   exit code === 2
+       ok   deny code === SECRET_ENV
+[PASS] (e) .env via an absolute path outside allowed paths BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/.env","content":"A=1\n"},"tool_use_id":"tu-7"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"SECRET_ENV","tool":"write","rule":"secret.env-file","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/.env","auth":null,"reason":"Refusing to write the secret-bearing environment file \".env\". Team policy blocks .env and .env.* at the tool layer; write a documented template (.env.example) instead, or have the human edit the real file outside the agent. (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/.env)"}
+       ok   exit code === 2
+       ok   deny code === SECRET_ENV
+[PASS] (e2) ordinary absolute path outside the workspace BLOCK (containment)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/notes.txt","content":"x\n"},"tool_use_id":"tu-8"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"OUTSIDE_WORKSPACE","tool":"write","rule":"workspace.containment","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/notes.txt","auth":null,"reason":"Refusing to write \"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/notes.txt\" (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/notes.txt): it is outside the session workspace [/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace] and the active task contract declares no allowed path covering it."}
+       ok   exit code === 2
+       ok   deny code === OUTSIDE_WORKSPACE
+[PASS] (e3) absolute ~/.ssh key path BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"~/.ssh/config","content":"Host *\n"},"tool_use_id":"tu-9"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"SECRET_HOME_DIR","tool":"write","rule":"secret.home-directory","target":"~/.ssh/config","auth":null,"reason":"Refusing to write inside \"/Users/maxwell/.ssh\" (credential home directory is always blocked). (resolved: /Users/maxwell/.ssh/config)"}
+       ok   exit code === 2
+       ok   deny code === SECRET_HOME_DIR
+[PASS] (e4) id_rsa* BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/id_rsa","content":"k\n"},"tool_use_id":"tu-10"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"SECRET_SSH_KEY","tool":"write","rule":"secret.ssh-private-key","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/id_rsa","auth":null,"reason":"Refusing to write SSH private key \"id_rsa\" (id_rsa* and sibling private-key names are always blocked). (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/id_rsa)"}
+       ok   exit code === 2
+       ok   deny code === SECRET_SSH_KEY
+[PASS] (e5) credentials directory BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/credentials/prod.json","content":"{}\n"},"tool_use_id":"tu-11"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"SECRET_DIRECTORY","tool":"write","rule":"secret.credentials-directory","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/credentials/prod.json","auth":null,"reason":"Refusing to write inside the credentials/secret directory \"credentials\". (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/credentials/prod.json)"}
+       ok   exit code === 2
+       ok   deny code === SECRET_DIRECTORY
+[PASS] (e6) .github/workflows BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/.github/workflows/ci.yml","content":"on: push\n"},"tool_use_id":"tu-12"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"CI_CD_CONFIG","tool":"write","rule":"cicd.github-workflows","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/.github/workflows/ci.yml","auth":null,"reason":"Refusing to write .github/workflows/** (CI/CD pipelines are protected configuration). (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/.github/workflows/ci.yml)"}
+       ok   exit code === 2
+       ok   deny code === CI_CD_CONFIG
+[PASS] (e7) Dockerfile BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/Dockerfile","content":"FROM scratch\n"},"tool_use_id":"tu-13"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"CI_CD_CONFIG","tool":"write","rule":"cicd.protected-config","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/Dockerfile","auth":null,"reason":"Refusing to write CI/CD or container build configuration \"Dockerfile\". This is protected pipeline/deploy configuration; change it through a human-reviewed commit, not an agent tool call. (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/Dockerfile)"}
+       ok   exit code === 2
+       ok   deny code === CI_CD_CONFIG
+[PASS] (e8) k8s/** and **/deploy/** BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/deploy/k8s/prod.yaml","content":"kind: Pod\n"},"tool_use_id":"tu-14"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"PROTECTED_DEPLOY_PATH","tool":"write","rule":"deploy.protected-directory","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/deploy/k8s/prod.yaml","auth":null,"reason":"Refusing to write under a \"deploy/\" tree (protected deployment configuration). (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/deploy/k8s/prod.yaml)"}
+       ok   exit code === 2
+       ok   deny code === PROTECTED_DEPLOY_PATH
+[PASS] (e9) knowledge-vault raw/ tree BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/Users/lmqhx/wiki/raw/source.md","content":"x\n"},"tool_use_id":"tu-15"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"VAULT_RAW_IMMUTABLE","tool":"write","rule":"vault.raw-tree","target":"/Users/lmqhx/wiki/raw/source.md","auth":null,"reason":"Refusing to write under a knowledge-vault raw/ tree (immutable source material). Return a knowledge-change proposal to the Lead instead. (resolved: /Users/lmqhx/wiki/raw/source.md)"}
+       ok   exit code === 2
+       ok   deny code === VAULT_RAW_IMMUTABLE
+
+=== BLOCKED — publish / deploy / destructive shell ===
+[PASS] (f) git commit BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"git commit -m 'feat: change'"},"tool_use_id":"tu-16"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"VCS_PUBLISH_NO_AUTH","tool":"bash","rule":"git.commit","target":"git commit -m 'feat: change'","auth":"vcs_publish","reason":"Refusing \"git commit\": committing and pushing publish work to a shared remote. This needs an exact authorization record (type \"vcs_publish\") from the human owner. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === VCS_PUBLISH_NO_AUTH
+       ok   deny auth type === vcs_publish
+[PASS] (g) git push BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"git push origin main"},"tool_use_id":"tu-17"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"VCS_PUBLISH_NO_AUTH","tool":"bash","rule":"git.push","target":"git push origin main","auth":"vcs_publish","reason":"Refusing \"git push\": committing and pushing publish work to a shared remote. This needs an exact authorization record (type \"vcs_publish\") from the human owner. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === VCS_PUBLISH_NO_AUTH
+[PASS] (g2) npm publish BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"npm publish --access public"},"tool_use_id":"tu-18"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"PACKAGE_PUBLISH_NO_AUTH","tool":"bash","rule":"npm.publish","target":"npm publish --access public","auth":"package_publish","reason":"Refusing \"npm publish\": publishing a package is an irreversible release action and needs an exact authorization record (type \"package_publish\"). No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === PACKAGE_PUBLISH_NO_AUTH
+[PASS] (g3) gh release BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"gh release create v1.0.0"},"tool_use_id":"tu-19"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"RELEASE_PUBLISH_NO_AUTH","tool":"bash","rule":"gh.release","target":"gh release create v1.0.0","auth":"release_publish","reason":"Refusing \"gh release\": publishing a release needs an exact authorization record (type \"release_publish\"). No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === RELEASE_PUBLISH_NO_AUTH
+[PASS] (g4) kubectl apply BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"kubectl apply -f deploy/prod.yaml"},"tool_use_id":"tu-20"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DEPLOY_NO_AUTH","tool":"bash","rule":"kubectl.apply","target":"kubectl apply -f deploy/prod.yaml","auth":"deploy","reason":"Refusing \"kubectl apply\": cluster mutation needs an exact authorization record (type \"deploy\"). No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === DEPLOY_NO_AUTH
+[PASS] (g5) docker compose up BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker compose up -d"},"tool_use_id":"tu-21"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DEPLOY_NO_AUTH","tool":"bash","rule":"docker.compose.up","target":"docker compose up -d","auth":"deploy","reason":"Refusing \"docker compose up\": starting the deployed stack needs an exact authorization record (type \"deploy\"). No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === DEPLOY_NO_AUTH
+[PASS] (g6) rsync to a remote BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"rsync -av ./dist/ deploy@host:/srv/app/"},"tool_use_id":"tu-22"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DEPLOY_NO_AUTH","tool":"bash","rule":"rsync.remote","target":"rsync -av ./dist/ deploy@host:/srv/app/","auth":"deploy","reason":"Refusing \"rsync\" to a remote target: it needs an exact authorization record (type \"deploy\"). No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === DEPLOY_NO_AUTH
+[PASS] (h) docker system prune BLOCK (outright)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker system prune -af --volumes"},"tool_use_id":"tu-23"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DOCKER_PRUNE","tool":"bash","rule":"docker.prune","target":"docker system prune -af --volumes","auth":null,"reason":"Refusing \"docker system prune\": prune/wildcard cleanup removes unenumerated resources and is blocked outright (no authorization accepted). Present a per-item manifest and delete named resources one at a time."}
+       ok   exit code === 2
+       ok   deny code === DOCKER_PRUNE
+[PASS] (h2) docker image prune BLOCK (outright)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker image prune -a"},"tool_use_id":"tu-24"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DOCKER_PRUNE","tool":"bash","rule":"docker.prune","target":"docker image prune -a","auth":null,"reason":"Refusing \"docker image prune\": prune/wildcard cleanup removes unenumerated resources and is blocked outright (no authorization accepted). Present a per-item manifest and delete named resources one at a time."}
+       ok   exit code === 2
+       ok   deny code === DOCKER_PRUNE
+[PASS] (h3) docker compose down -v BLOCK (outright)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker compose down -v"},"tool_use_id":"tu-25"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DOCKER_COMPOSE_BLANKET_DOWN","tool":"bash","rule":"docker.compose.down.volumes","target":"docker compose down -v","auth":null,"reason":"Refusing \"docker compose down -v/--rmi/--remove-orphans\": blanket project teardown removes unenumerated volumes and images. Enumerate and delete named resources instead."}
+       ok   exit code === 2
+       ok   deny code === DOCKER_COMPOSE_BLANKET_DOWN
+[PASS] (h4) DROP DATABASE BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"psql -c \"DROP DATABASE customers\""},"tool_use_id":"tu-26"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DB_DESTRUCTIVE_NO_AUTH","tool":"bash","rule":"sql.drop-database","target":"psql -c \"DROP DATABASE customers\"","auth":"db_destructive","reason":"Refusing \"DROP DATABASE customers\": an exact authorization record (type \"db_destructive\") naming customers is required. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === DB_DESTRUCTIVE_NO_AUTH
+[PASS] (h5) TRUNCATE BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"psql -c \"TRUNCATE orders\""},"tool_use_id":"tu-27"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DB_DESTRUCTIVE_NO_AUTH","tool":"bash","rule":"sql.truncate","target":"psql -c \"TRUNCATE orders\"","auth":"db_destructive","reason":"Refusing \"TRUNCATE orders\": an exact authorization record (type \"db_destructive\") naming orders is required. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === DB_DESTRUCTIVE_NO_AUTH
+[PASS] (h6) rm -rf outside the workspace BLOCK (outright)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"rm -rf /Users/maxwell/Documents"},"tool_use_id":"tu-28"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"RM_RECURSIVE_FORCE","tool":"bash","rule":"bash.rm-rf","target":"rm -rf /Users/maxwell/Documents","auth":null,"reason":"Refusing \"rm -rf /Users/maxwell/Documents\": recursive force deletion outside the session workspace (or with a wildcard/home/root target) is irreversible and blocked outright."}
+       ok   exit code === 2
+       ok   deny code === RM_RECURSIVE_FORCE
+[PASS] (h7) git commit smuggled through `&&` BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"ls -la && git commit -m 'x'"},"tool_use_id":"tu-29"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"VCS_PUBLISH_NO_AUTH","tool":"bash","rule":"git.commit","target":"ls -la && git commit -m 'x'","auth":"vcs_publish","reason":"Refusing \"git commit\": committing and pushing publish work to a shared remote. This needs an exact authorization record (type \"vcs_publish\") from the human owner. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === VCS_PUBLISH_NO_AUTH
+[PASS] (h8) git push smuggled through $(...) BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"echo $(git push origin main)"},"tool_use_id":"tu-30"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"VCS_PUBLISH_NO_AUTH","tool":"bash","rule":"git.push","target":"echo $(git push origin main)","auth":"vcs_publish","reason":"Refusing \"git push\": committing and pushing publish work to a shared remote. This needs an exact authorization record (type \"vcs_publish\") from the human owner. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === VCS_PUBLISH_NO_AUTH
+[PASS] (h9) docker rm with a wildcard selector BLOCK (outright)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker rm $(docker ps -aq)"},"tool_use_id":"tu-31"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DOCKER_REMOVE_UNSCOPED","tool":"bash","rule":"docker.rm","target":"docker rm $(docker ps -aq)","auth":null,"reason":"Refusing \"docker rm $(docker ps\": wildcard or dynamic resource selector \"$(docker\". Removal must name every resource explicitly; wildcard/prune forms are blocked outright."}
+       ok   exit code === 2
+       ok   deny code === DOCKER_REMOVE_UNSCOPED
+
+=== AUTHORIZATION — named resource deletion ===
+[PASS] (i) named docker rm 3f2a1b0c9d8e WITHOUT authorization BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker rm 3f2a1b0c9d8e"},"tool_use_id":"tu-32"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"RESOURCE_DELETE_NO_AUTH","tool":"bash","rule":"docker.rm","target":"docker rm 3f2a1b0c9d8e","auth":"docker_delete","reason":"Refusing \"docker rm 3f2a1b0c9d8e\": deleting Docker resources needs an exact authorization record (type \"docker_delete\") naming 3f2a1b0c9d8e. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === RESOURCE_DELETE_NO_AUTH
+       ok   deny auth type === docker_delete
+[PASS] (j) named docker rm 3f2a1b0c9d8e WITH a matching authorization record ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker rm 3f2a1b0c9d8e","authorization":{"id":"AUTH-DOCKER-1","type":"docker_delete","issued_by":"user","issued_at":1791885305289,"resources":["3f2a1b0c9d8e"],"reason":"approved single container removal after manifest review"}},"tool_use_id":"tu-33"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (j2) named docker rm with a NON-matching authorization resource BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker rm 3f2a1b0c9d8e","authorization":{"id":"AUTH-DOCKER-2","type":"docker_delete","issued_by":"user","resources":["deadbeefdead"]}},"tool_use_id":"tu-34"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"RESOURCE_DELETE_NO_AUTH","tool":"bash","rule":"docker.rm","target":"docker rm 3f2a1b0c9d8e","auth":"docker_delete","reason":"Refusing \"docker rm 3f2a1b0c9d8e\": deleting Docker resources needs an exact authorization record (type \"docker_delete\") naming 3f2a1b0c9d8e. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === RESOURCE_DELETE_NO_AUTH
+[PASS] (j3) docker rm authorized with a WILDCARD resource BLOCK (wildcard never authorizes)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker rm 3f2a1b0c9d8e","authorization":{"id":"AUTH-DOCKER-3","type":"docker_delete","issued_by":"user","resources":["*"]}},"tool_use_id":"tu-35"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"RESOURCE_DELETE_NO_AUTH","tool":"bash","rule":"docker.rm","target":"docker rm 3f2a1b0c9d8e","auth":"docker_delete","reason":"Refusing \"docker rm 3f2a1b0c9d8e\": deleting Docker resources needs an exact authorization record (type \"docker_delete\") naming 3f2a1b0c9d8e. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json."}
+       ok   exit code === 2
+       ok   deny code === RESOURCE_DELETE_NO_AUTH
+[PASS] (j4) docker system prune WITH a wildcard authorization still BLOCK (prune is outright)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker system prune -af","authorization":{"id":"AUTH-DOCKER-4","type":"docker_delete","issued_by":"user","resources":["*"]}},"tool_use_id":"tu-36"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DOCKER_PRUNE","tool":"bash","rule":"docker.prune","target":"docker system prune -af","auth":null,"reason":"Refusing \"docker system prune\": prune/wildcard cleanup removes unenumerated resources and is blocked outright (no authorization accepted). Present a per-item manifest and delete named resources one at a time."}
+       ok   exit code === 2
+       ok   deny code === DOCKER_PRUNE
+
+=== ALLOWED — ordinary shell ===
+[PASS] (k1) ls -la ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"ls -la"},"tool_use_id":"tu-37"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (k2) cat package.json ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"cat package.json"},"tool_use_id":"tu-38"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (k3) echo hello ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"echo hello"},"tool_use_id":"tu-39"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (k4) git status ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"git status --short && git add -A"},"tool_use_id":"tu-40"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (k5) rm -rf inside the workspace ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"rm -rf node_modules dist"},"tool_use_id":"tu-41"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+
+=== DISPATCH — authorization + pre-dispatch ledger ===
+[PASS] (l) spawn_teammate WITHOUT an authorization record BLOCK and the ledger is NOT advanced
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"spawn_teammate","tool_input":{"name":"backend","description":"implement the API","prompt":"do the work"},"tool_use_id":"tu-dispatch-blocked"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DISPATCH_UNAUTHORIZED","tool":"spawn_teammate","rule":"dispatch.authorization","target":"backend","auth":"dispatch","reason":"Refusing \"spawn_teammate\" for role \"backend\": no dispatch authorization record for that role+scope exists. Issue {\"type\":\"dispatch\",\"role\":\"backend\",\"scope\":[\"<allowed path prefix>\"],\"issued_by\":\"<human>\",\"id\":\"AUTH-...\"} in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json first. The ledger was NOT advanced for this blocked dispatch."}
+       ok   exit code === 2
+       ok   deny code === DISPATCH_UNAUTHORIZED
+       ok   ledger line count unchanged by a blocked dispatch
+       ok   no ledger record carries the blocked dispatch id
+[PASS] (m) spawn_teammate WITH a grant but WITHOUT a pre-dispatch ledger record BLOCK (hook runs read-only)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"spawn_teammate","tool_input":{"name":"backend","description":"implement the API","prompt":"do the work"},"tool_use_id":"tu-dispatch-allowed"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"LEDGER_RECORD_MISSING","tool":"spawn_teammate","rule":"ledger.predispatch","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl","auth":"AUTH-DISPATCH-BACKEND","reason":"Refusing \"spawn_teammate\" for role \"backend\": no unconsumed pre-dispatch ledger record matches this dispatch. The ledger at /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl does not exist yet. Append it first with an ordinary tool call (the hook itself runs read-only and cannot write): node /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/ledger.js --dispatch --role backend --scope <path> --authorization AUTH-DISPATCH-BACKEND --session sess-tests --tool spawn_teammate. Then dispatch, then record completion with --complete --task-id <the id printed above>."}
+       ok   exit code === 2
+       ok   deny code === LEDGER_RECORD_MISSING
+       ok   the hook wrote nothing to the ledger
+[PASS] (m1) spawn_teammate ALLOW once a matching unconsumed pre-dispatch record exists; the hook itself writes nothing
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"spawn_teammate","tool_input":{"name":"backend","description":"implement the API","prompt":"do the work"},"tool_use_id":"tu-dispatch-allowed"}
+       observed : exit=0
+       stderr   : DSH-POLICY-NOTE {"notes":["ledger pre-dispatch record sess-tests#cli-predispatch (seq 1) found; the hook writes nothing itself"]}
+       ok   exit code === 0
+       ok   ledger line count is unchanged by the allowed dispatch (read-only hook)
+       ok   the record that unlocked it is the pre-written dispatch record
+       ok   a DSH-POLICY-NOTE on stderr names the record that was matched
+[PASS] (m2) spawn_teammate for a DIFFERENT role than the grant BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"spawn_teammate","tool_input":{"name":"devops","description":"ship it","prompt":"go"},"tool_use_id":"tu-42"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DISPATCH_UNAUTHORIZED","tool":"spawn_teammate","rule":"dispatch.authorization","target":"devops","auth":"dispatch","reason":"Refusing \"spawn_teammate\" for role \"devops\": no dispatch authorization record for that role+scope exists. Issue {\"type\":\"dispatch\",\"role\":\"devops\",\"scope\":[\"<allowed path prefix>\"],\"issued_by\":\"<human>\",\"id\":\"AUTH-...\"} in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json first. The ledger was NOT advanced for this blocked dispatch."}
+       ok   exit code === 2
+       ok   deny code === DISPATCH_UNAUTHORIZED
+[PASS] (m3) subagent WITHOUT a record BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"subagent","tool_input":{"description":"research","prompt":"look it up"},"tool_use_id":"tu-43"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"DISPATCH_UNAUTHORIZED","tool":"subagent","rule":"dispatch.authorization","target":"task","auth":"dispatch","reason":"Refusing \"subagent\" for role \"task\": no dispatch authorization record for that role+scope exists. Issue {\"type\":\"dispatch\",\"role\":\"task\",\"scope\":[\"<allowed path prefix>\"],\"issued_by\":\"<human>\",\"id\":\"AUTH-...\"} in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations.json first. The ledger was NOT advanced for this blocked dispatch."}
+       ok   exit code === 2
+       ok   deny code === DISPATCH_UNAUTHORIZED
+[PASS] (m4) a CONSUMED pre-dispatch record no longer authorises a dispatch BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"spawn_teammate","tool_input":{"name":"backend","description":"implement the API","prompt":"do the work"},"tool_use_id":"tu-dispatch-allowed"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"LEDGER_RECORD_MISSING","tool":"spawn_teammate","rule":"ledger.predispatch","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl","auth":"AUTH-DISPATCH-BACKEND","reason":"Refusing \"spawn_teammate\" for role \"backend\": no unconsumed pre-dispatch ledger record matches this dispatch. 2 ledger record(s) read from /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl; none is an unconsumed \"dispatch\" record for role \"backend\" covering the declared scope [<none declared>]. Append it first with an ordinary tool call (the hook itself runs read-only and cannot write): node /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/ledger.js --dispatch --role backend --scope <path> --authorization AUTH-DISPATCH-BACKEND --session sess-tests --tool spawn_teammate. Then dispatch, then record completion with --complete --task-id <the id printed above>."}
+       ok   exit code === 2
+       ok   deny code === LEDGER_RECORD_MISSING
+[PASS] (m5) an unconsumed pre-dispatch record for a DIFFERENT role does not authorise this dispatch BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"spawn_teammate","tool_input":{"name":"backend","description":"implement the API","prompt":"do the work"},"tool_use_id":"tu-dispatch-allowed"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"LEDGER_RECORD_MISSING","tool":"spawn_teammate","rule":"ledger.predispatch","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl","auth":"AUTH-DISPATCH-BACKEND","reason":"Refusing \"spawn_teammate\" for role \"backend\": no unconsumed pre-dispatch ledger record matches this dispatch. 3 ledger record(s) read from /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl; none is an unconsumed \"dispatch\" record for role \"backend\" covering the declared scope [<none declared>]. Append it first with an ordinary tool call (the hook itself runs read-only and cannot write): node /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/ledger.js --dispatch --role backend --scope <path> --authorization AUTH-DISPATCH-BACKEND --session sess-tests --tool spawn_teammate. Then dispatch, then record completion with --complete --task-id <the id printed above>."}
+       ok   exit code === 2
+       ok   deny code === LEDGER_RECORD_MISSING
+[PASS] (m6) PostToolUse never writes a completion record (read-only hook) and never blocks
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PostToolUse","tool_name":"spawn_teammate","tool_input":{"name":"backend","description":"implement the API","prompt":"do the work"},"tool_use_id":"tu-dispatch-allowed","tool_response":"teammate backend started"}
+       observed : exit=0
+       stderr   : DSH-POLICY-NOTE {"rule":"ledger.complete","message":"spawn_teammate for role \"backend\" finished; no outstanding dispatch record to consume.","ledger":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl"}
+       ok   exit code === 0
+       ok   no completion record was appended by the hook
+       ok   stderr reports the outstanding completion step
+
+=== ROBUSTNESS — malformed input and unknown tools ===
+[PASS] (n) malformed (non-JSON) stdin BLOCK
+       input    : this is not json at all
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"MALFORMED_INPUT","tool":null,"rule":"stdin.not-json","target":null,"auth":null,"reason":"Refusing to run: the policy hook received malformed JSON on stdin (Unexpected token 'h', \"this is not\"... is not valid JSON). Fail-closed by design."}
+       ok   exit code === 2
+       ok   deny code === MALFORMED_INPUT
+[PASS] (n2) empty stdin BLOCK
+       input    : 
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"MALFORMED_INPUT","tool":null,"rule":"stdin.empty","target":null,"auth":null,"reason":"Refusing to run: the policy hook received empty stdin, so it cannot classify the call. Fail-closed by design (a crash would be a non-blocking bridge failure and the tool would proceed)."}
+       ok   exit code === 2
+       ok   deny code === MALFORMED_INPUT
+[PASS] (n3) JSON array stdin BLOCK
+       input    : [1,2,3]
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"MALFORMED_INPUT","tool":null,"rule":"stdin.not-object","target":null,"auth":null,"reason":"Refusing to run: the policy hook stdin payload was not a JSON object. Fail-closed by design."}
+       ok   exit code === 2
+       ok   deny code === MALFORMED_INPUT
+[PASS] (n4) payload without tool_name BLOCK
+       input    : {"hook_event_name":"PreToolUse","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","tool_input":{}}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"MALFORMED_INPUT","tool":null,"rule":"input.tool_name","target":null,"auth":null,"reason":"Refusing to run: the hook payload carried no tool_name, so the policy cannot classify the call."}
+       ok   exit code === 2
+       ok   deny code === MALFORMED_INPUT
+[PASS] (n5) write without any path argument BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"content":"x"},"tool_use_id":"tu-44"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"PATH_ARGUMENT_MISSING","tool":"write","rule":"path.missing","target":null,"auth":null,"reason":"Refusing \"write\": no file path could be read from the tool input (recognised keys: file_path, path, file, filePath, patch). Fail-closed because an unverifiable write cannot be allowed."}
+       ok   exit code === 2
+       ok   deny code === PATH_ARGUMENT_MISSING
+[PASS] (o) unknown non-mutating tool ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"totally_unknown_tool","tool_input":{"anything":true},"tool_use_id":"tu-45"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (o2) `read` ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"read","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/.env"},"tool_use_id":"tu-46"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (o3) `glob` ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"glob","tool_input":{"pattern":"**/*.js"},"tool_use_id":"tu-47"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (o4) allowed call with a MALFORMED authorization store ALLOWs but warns on stderr
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"ls -la"},"tool_use_id":"tu-48"}
+       observed : exit=0
+       stderr   : DSH-POLICY-WARN {"rule":"config.unreadable","warnings":["/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations-broken.json: Expected property name or '}' in JSON at position 2 (line 1 column 3)"]}
+       ok   exit code === 0
+       ok   stderr carries a DSH-POLICY-WARN config.unreadable
+[PASS] (o5) a resource deletion with a MALFORMED authorization store is still BLOCKED (fail-closed)
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"bash","tool_input":{"command":"docker rm 3f2a1b0c9d8e"},"tool_use_id":"tu-49"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"RESOURCE_DELETE_NO_AUTH","tool":"bash","rule":"docker.rm","target":"docker rm 3f2a1b0c9d8e","auth":"docker_delete","reason":"Refusing \"docker rm 3f2a1b0c9d8e\": deleting Docker resources needs an exact authorization record (type \"docker_delete\") naming 3f2a1b0c9d8e. No matching record was found in the payload or in /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/authorizations-broken.json."}
+       ok   exit code === 2
+       ok   deny code === RESOURCE_DELETE_NO_AUTH
+[PASS] (p1) team_task_create ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"team_task_create","tool_input":{"subject":"s","description":"d","write_scopes":["src/"]},"tool_use_id":"tu-50"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (p2) team_task_update ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"team_task_update","tool_input":{"task_id":"t-1","status":"in_progress","owner":"backend"},"tool_use_id":"tu-51"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (p3) interrupt_agent / list_agents ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"interrupt_agent","tool_input":{"target":"backend"},"tool_use_id":"tu-52"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+
+=== TASK CONTRACT — explicit allowed / denied paths ===
+[PASS] (r0) pre-dispatch record whose scope does NOT cover the contract allowed path BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"spawn_teammate","tool_input":{"name":"backend","description":"implement the API","prompt":"do the work"},"tool_use_id":"tu-scope-mismatch"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"LEDGER_RECORD_MISSING","tool":"spawn_teammate","rule":"ledger.predispatch","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl","auth":"AUTH-DISPATCH-BACKEND","reason":"Refusing \"spawn_teammate\" for role \"backend\": no unconsumed pre-dispatch ledger record matches this dispatch. 4 ledger record(s) read from /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl; none is an unconsumed \"dispatch\" record for role \"backend\" covering the declared scope [/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside]. Append it first with an ordinary tool call (the hook itself runs read-only and cannot write): node /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/ledger.js --dispatch --role backend --scope /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside --authorization AUTH-DISPATCH-BACKEND --session sess-tests --tool spawn_teammate. Then dispatch, then record completion with --complete --task-id <the id printed above>."}
+       ok   exit code === 2
+       ok   deny code === LEDGER_RECORD_MISSING
+[PASS] (r0b) pre-dispatch record whose scope DOES cover the contract allowed path ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"spawn_teammate","tool_input":{"name":"backend","description":"implement the API","prompt":"do the work"},"tool_use_id":"tu-scope-match"}
+       observed : exit=0
+       stderr   : DSH-POLICY-NOTE {"notes":["ledger pre-dispatch record sess-tests#cli-right-scope (seq 5) found; the hook writes nothing itself"]}
+       ok   exit code === 0
+[PASS] (r1) write into a task-contract allowed_path OUTSIDE the workspace ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/build-artifact.txt","content":"x\n"},"tool_use_id":"tu-53"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (r2) write inside a task-contract denied_path BLOCK
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/vendor/lib.js","content":"x\n"},"tool_use_id":"tu-54"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"TASK_CONTRACT_DENIED_PATH","tool":"write","rule":"contract.denied_path","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/vendor/lib.js","auth":null,"reason":"Refusing to write /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/vendor/lib.js: the active task contract explicitly denies /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/vendor."}
+       ok   exit code === 2
+       ok   deny code === TASK_CONTRACT_DENIED_PATH
+[PASS] (r3) `..` traversal that stays inside the workspace ALLOW
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/src/ok2.js","content":"x\n"},"tool_use_id":"tu-55"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   exit code === 0
+[PASS] (r4) no contract file at all -> default containment still applies
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"write","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/build-artifact.txt","content":"x\n"},"tool_use_id":"tu-56"}
+       observed : exit=2
+       stderr   : DSH-POLICY-DENY {"code":"OUTSIDE_WORKSPACE","tool":"write","rule":"workspace.containment","target":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/build-artifact.txt","auth":null,"reason":"Refusing to write \"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/build-artifact.txt\" (resolved: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/outside/build-artifact.txt): it is outside the session workspace [/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace] and the active task contract declares no allowed path covering it."}
+       ok   exit code === 2
+       ok   deny code === OUTSIDE_WORKSPACE
+
+=== LEDGER — append-only verification ===
+[PASS] (q) ledger --verify reports append-only integrity after the mixed pass
+       input    : {"session_id":"sess-tests","transcript_path":"","cwd":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace","hook_event_name":"PreToolUse","tool_name":"read","tool_input":{"file_path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/workspace/src/ok.js"},"tool_use_id":"tu-57"}
+       observed : exit=0
+       stderr   : <empty>
+       ok   ledger --verify exit code === 0 (observed 0)
+       ok   verify report ok===true, seq monotonic, no duplicate dispatch ids
+       ok   verify is read-only (ledger byte length unchanged before/after)
+       ledger --verify stdout: {"ok":true,"tool":"dsh-team-ledger-verify","path":"/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl","exists":true,"lines":5,"records":5,"dispatch_records":4,"complete_records":1,"max_seq":5,"malformed_lines":[],"seq_issues":[],"ts_issues":[],"duplicate_dispatch_ids":[],"bad_source":[],"unknown_event":[],"candidate_paths":["/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl"],"verifying":["/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl"]}
+
+=== SUMMARY ===
+sandbox : /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk
+checker : /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/policy_check.js
+ledger  : /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-policy-tests-ny8ryk/ledger/agent-ledger.jsonl (5 records)
+
+69 passed, 0 failed, 69 total

@@ -1,0 +1,27 @@
+WS-B role layer — delivered file inventory
+date: 2026-10-13T09:19:22Z
+root: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow
+
+     bytes  path
+----------  ----
+     12988  roles/README.md
+     31008  roles/_tools/validate_roles.js
+      7245  roles/architect.md
+      7457  roles/backend.md
+      8094  roles/code-review.md
+      7493  roles/compliance.md
+      8205  roles/devops.md
+      8110  roles/frontend.md
+      7786  roles/harness.md
+      6956  roles/pm.md
+      7040  roles/qa.md
+      6494  roles/quota-control.md
+     11221  roles/registry.yaml
+
+(evidence/roles-validate.txt, evidence/roles-validate-selftest.txt and this inventory
+ file itself are evidence artifacts, not deliverables; their bytes at write time were:
+      2359  evidence/roles-validate.txt
+     37741  evidence/roles-validate-selftest.txt
+ and evidence/roles-inventory.txt is self-referential.)
+
+TOTAL 130097 bytes in 13 deliverable files under roles/

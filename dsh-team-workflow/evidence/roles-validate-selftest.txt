@@ -1,0 +1,225 @@
+================================================================================
+WS-B role-layer validator — SELF-TEST OF THE CHECKER ITSELF (final validator)
+date: 2026-10-13T09:19:22Z
+================================================================================
+These runs use SYNTHETIC FIXTURES built in a temp directory. They are NOT WS-A's
+skills/ output and NOT part of the deliverable. Purpose: prove the checks below
+actually fire (no vacuous PASS) and that the DEFERRED branch behaves as specified.
+Fixture root: /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu
+The authoritative deliverable run is in roles-validate.txt.
+
+--------------------------------------------------------------------------------
+[F1] skills root present, bound skills missing, NOT recorded in MISSING-SKILLS.md
+     expected: ERROR (DANGLING) + exit 1
+--------------------------------------------------------------------------------
+$ node roles/_tools/validate_roles.js --skills-dir=/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min
+DSH role-layer validator (WS-B)
+command: node roles/_tools/validate_roles.js --skills-dir=/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min
+root: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow
+roles_dir: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/roles
+skills_dir: /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min (present)
+missing_skills_file: /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md (absent)
+---
+ERROR    skill-binding      DANGLING: architect.md 绑定技能 "architecture-delivery"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/architecture-delivery/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: architect.md 绑定技能 "cross-team-contract-alignment"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/cross-team-contract-alignment/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: architect.md 绑定技能 "database-design-checklist"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/database-design-checklist/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: architect.md 绑定技能 "web-architecture-patterns"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/web-architecture-patterns/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: architect.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: backend.md 绑定技能 "backend-delivery"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/backend-delivery/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: backend.md 绑定技能 "database-design-checklist"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/database-design-checklist/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: backend.md 绑定技能 "web-architecture-patterns"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/web-architecture-patterns/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: backend.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: code-review.md 绑定技能 "code-review-delivery"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/code-review-delivery/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: code-review.md 绑定技能 "code-review-defect-patterns"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/code-review-defect-patterns/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: code-review.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: compliance.md 绑定技能 "compliance-delivery"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/compliance-delivery/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: compliance.md 绑定技能 "security-test-matrix"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/security-test-matrix/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: compliance.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: devops.md 绑定技能 "operations-delivery"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/operations-delivery/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: devops.md 绑定技能 "docker-artifact-safety"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/docker-artifact-safety/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: devops.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: frontend.md 绑定技能 "frontend-delivery"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/frontend-delivery/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: frontend.md 绑定技能 "react-best-practices"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/react-best-practices/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: frontend.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: harness.md 绑定技能 "harness-delivery"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/harness-delivery/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: harness.md 绑定技能 "cross-team-contract-alignment"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/cross-team-contract-alignment/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: harness.md 绑定技能 "web-architecture-patterns"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/web-architecture-patterns/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: harness.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: pm.md 绑定技能 "product-delivery"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/product-delivery/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: pm.md 绑定技能 "pm-requirements"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/pm-requirements/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: pm.md 绑定技能 "cross-team-contract-alignment"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/cross-team-contract-alignment/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: pm.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: qa.md 绑定技能 "qa-delivery"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/qa-delivery/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: qa.md 绑定技能 "verification-before-completion"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/verification-before-completion/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: qa.md 绑定技能 "anti-fake-testing"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/anti-fake-testing/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: qa.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: quota-control.md 绑定技能 "quota-governance"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/quota-governance/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+ERROR    skill-binding      DANGLING: quota-control.md 绑定技能 "hermes-obsidian"，既不存在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/hermes-obsidian/SKILL.md，也未记录在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md
+WARN     removed-skills     code-review.md 把 "branch-diff-static-review" 记录为已移除，但 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md 未记录该名字（跨层记录缺失）
+WARN     removed-skills     frontend.md 把 "react-page-implementation" 记录为已移除，但 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-min/MISSING-SKILLS.md 未记录该名字（跨层记录缺失）
+PASS     role-file          10/10 预期角色文件存在: architect, backend, code-review, compliance, devops, frontend, harness, pm, qa, quota-control
+PASS     forbidden-claims   未发现未标注的虚假能力声明（write_scopes 强制执行 / 自动释放所有权 / 角色级 OS 沙箱）
+PASS     registry           15 个角色覆盖完整，其中 10 个 local-definition、5 个 dsh-builtin-substitute
+---
+SUMMARY {"roles_expected":10,"roles_found":10,"registry_roles":15,"local_definitions":10,"substitutes":5,"skill_check_ran":true,"skills_dir_present":true,"dangling_bindings":["anti-fake-testing","architecture-delivery","backend-delivery","code-review-defect-patterns","code-review-delivery","compliance-delivery","cross-team-contract-alignment","database-design-checklist","docker-artifact-safety","frontend-delivery","harness-delivery","hermes-obsidian","operations-delivery","pm-requirements","product-delivery","qa-delivery","quota-governance","react-best-practices","security-test-matrix","verification-before-completion","web-architecture-patterns"],"removed_bindings":["branch-diff-static-review","react-page-implementation"],"forbidden_claim_hits":0,"errors":35,"warnings":2,"deferred":0,"passes":3,"checks":{"reviewers":{"architect":["code-review","compliance"],"backend":["code-review","qa"],"code-review":["none"],"compliance":["none"],"devops":["compliance","code-review"],"frontend":["code-review","qa"],"harness":["code-review","compliance","qa"],"pm":["architect"],"qa":["code-review"],"quota-control":["compliance"]}}}
+RESULT FAIL (35 error(s))
+exit code 1
+[exit code: 1]
+
+--------------------------------------------------------------------------------
+[F2] skills root ABSENT
+     expected: DEFERRED warning + exit 0; RESULT states skill-existence was NOT verified
+--------------------------------------------------------------------------------
+$ node roles/_tools/validate_roles.js --skills-dir=/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/does-not-exist
+DSH role-layer validator (WS-B)
+command: node roles/_tools/validate_roles.js --skills-dir=/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/does-not-exist
+root: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow
+roles_dir: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/roles
+skills_dir: /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/does-not-exist (ABSENT)
+missing_skills_file: /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/does-not-exist/MISSING-SKILLS.md (absent)
+---
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 6 个绑定: team-workflow, architecture-delivery, cross-team-contract-alignment, database-design-checklist, web-architecture-patterns, hermes-obsidian)
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 5 个绑定: team-workflow, backend-delivery, database-design-checklist, web-architecture-patterns, hermes-obsidian)
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 4 个绑定: team-workflow, code-review-delivery, code-review-defect-patterns, hermes-obsidian)
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 4 个绑定: team-workflow, compliance-delivery, security-test-matrix, hermes-obsidian)
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 4 个绑定: team-workflow, operations-delivery, docker-artifact-safety, hermes-obsidian)
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 4 个绑定: team-workflow, frontend-delivery, react-best-practices, hermes-obsidian)
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 5 个绑定: team-workflow, harness-delivery, cross-team-contract-alignment, web-architecture-patterns, hermes-obsidian)
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 5 个绑定: team-workflow, product-delivery, pm-requirements, cross-team-contract-alignment, hermes-obsidian)
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 5 个绑定: team-workflow, qa-delivery, verification-before-completion, anti-fake-testing, hermes-obsidian)
+DEFERRED skill-existence    DEFERRED: skills/ not yet present — rerun after WS-A (未校验 3 个绑定: team-workflow, quota-governance, hermes-obsidian)
+PASS     role-file          10/10 预期角色文件存在: architect, backend, code-review, compliance, devops, frontend, harness, pm, qa, quota-control
+PASS     forbidden-claims   未发现未标注的虚假能力声明（write_scopes 强制执行 / 自动释放所有权 / 角色级 OS 沙箱）
+PASS     registry           15 个角色覆盖完整，其中 10 个 local-definition、5 个 dsh-builtin-substitute
+---
+SUMMARY {"roles_expected":10,"roles_found":10,"registry_roles":15,"local_definitions":10,"substitutes":5,"skill_check_ran":false,"skills_dir_present":false,"dangling_bindings":[],"removed_bindings":["branch-diff-static-review","react-page-implementation"],"forbidden_claim_hits":0,"errors":0,"warnings":0,"deferred":10,"passes":3,"checks":{"reviewers":{"architect":["code-review","compliance"],"backend":["code-review","qa"],"code-review":["none"],"compliance":["none"],"devops":["compliance","code-review"],"frontend":["code-review","qa"],"harness":["code-review","compliance","qa"],"pm":["architect"],"qa":["code-review"],"quota-control":["compliance"]}}}
+RESULT PASS (WITH DEFERRED: skills/ not yet present — rerun after WS-A; skill-existence was NOT verified)
+exit code 0
+[exit code: 0]
+
+--------------------------------------------------------------------------------
+[F3] skills root present and missing names ARE recorded in MISSING-SKILLS.md
+     expected: WARN (not ERROR) + exit 0 (tolerant branch of the dangling check)
+--------------------------------------------------------------------------------
+$ node roles/_tools/validate_roles.js --skills-dir=/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol
+DSH role-layer validator (WS-B)
+command: node roles/_tools/validate_roles.js --skills-dir=/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol
+root: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow
+roles_dir: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/roles
+skills_dir: /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol (present)
+missing_skills_file: /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol/MISSING-SKILLS.md (present)
+---
+WARN     skill-binding      architect.md 绑定的技能 "architecture-delivery" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): architecture-delivery"
+WARN     skill-binding      architect.md 绑定的技能 "cross-team-contract-alignment" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): cross-team-contract-alignment"
+WARN     skill-binding      architect.md 绑定的技能 "database-design-checklist" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): database-design-checklist"
+WARN     skill-binding      architect.md 绑定的技能 "web-architecture-patterns" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): web-architecture-patterns"
+WARN     skill-binding      architect.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+WARN     skill-binding      backend.md 绑定的技能 "backend-delivery" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): backend-delivery"
+WARN     skill-binding      backend.md 绑定的技能 "database-design-checklist" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): database-design-checklist"
+WARN     skill-binding      backend.md 绑定的技能 "web-architecture-patterns" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): web-architecture-patterns"
+WARN     skill-binding      backend.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+WARN     skill-binding      code-review.md 绑定的技能 "code-review-delivery" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): code-review-delivery"
+WARN     skill-binding      code-review.md 绑定的技能 "code-review-defect-patterns" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): code-review-defect-patterns"
+WARN     skill-binding      code-review.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+WARN     removed-skills     code-review.md 把 "branch-diff-static-review" 记录为已移除，但 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol/MISSING-SKILLS.md 未记录该名字（跨层记录缺失）
+WARN     skill-binding      compliance.md 绑定的技能 "compliance-delivery" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): compliance-delivery"
+WARN     skill-binding      compliance.md 绑定的技能 "security-test-matrix" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): security-test-matrix"
+WARN     skill-binding      compliance.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+WARN     skill-binding      devops.md 绑定的技能 "operations-delivery" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): operations-delivery"
+WARN     skill-binding      devops.md 绑定的技能 "docker-artifact-safety" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): docker-artifact-safety"
+WARN     skill-binding      devops.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+WARN     skill-binding      frontend.md 绑定的技能 "frontend-delivery" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): frontend-delivery"
+WARN     skill-binding      frontend.md 绑定的技能 "react-best-practices" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): react-best-practices"
+WARN     skill-binding      frontend.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+WARN     removed-skills     frontend.md 把 "react-page-implementation" 记录为已移除，但 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol/MISSING-SKILLS.md 未记录该名字（跨层记录缺失）
+WARN     skill-binding      harness.md 绑定的技能 "harness-delivery" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): harness-delivery"
+WARN     skill-binding      harness.md 绑定的技能 "cross-team-contract-alignment" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): cross-team-contract-alignment"
+WARN     skill-binding      harness.md 绑定的技能 "web-architecture-patterns" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): web-architecture-patterns"
+WARN     skill-binding      harness.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+WARN     skill-binding      pm.md 绑定的技能 "product-delivery" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): product-delivery"
+WARN     skill-binding      pm.md 绑定的技能 "pm-requirements" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): pm-requirements"
+WARN     skill-binding      pm.md 绑定的技能 "cross-team-contract-alignment" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): cross-team-contract-alignment"
+WARN     skill-binding      pm.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+WARN     skill-binding      qa.md 绑定的技能 "qa-delivery" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): qa-delivery"
+WARN     skill-binding      qa.md 绑定的技能 "verification-before-completion" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): verification-before-completion"
+WARN     skill-binding      qa.md 绑定的技能 "anti-fake-testing" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): anti-fake-testing"
+WARN     skill-binding      qa.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+WARN     skill-binding      quota-control.md 绑定的技能 "quota-governance" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): quota-governance"
+WARN     skill-binding      quota-control.md 绑定的技能 "hermes-obsidian" 不在 /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/skills-tol，但已在 MISSING-SKILLS.md 记录为移除项: "- removed binding (fixture): hermes-obsidian"
+PASS     role-file          10/10 预期角色文件存在: architect, backend, code-review, compliance, devops, frontend, harness, pm, qa, quota-control
+PASS     forbidden-claims   未发现未标注的虚假能力声明（write_scopes 强制执行 / 自动释放所有权 / 角色级 OS 沙箱）
+PASS     registry           15 个角色覆盖完整，其中 10 个 local-definition、5 个 dsh-builtin-substitute
+---
+SUMMARY {"roles_expected":10,"roles_found":10,"registry_roles":15,"local_definitions":10,"substitutes":5,"skill_check_ran":true,"skills_dir_present":true,"dangling_bindings":["anti-fake-testing","architecture-delivery","backend-delivery","code-review-defect-patterns","code-review-delivery","compliance-delivery","cross-team-contract-alignment","database-design-checklist","docker-artifact-safety","frontend-delivery","harness-delivery","hermes-obsidian","operations-delivery","pm-requirements","product-delivery","qa-delivery","quota-governance","react-best-practices","security-test-matrix","verification-before-completion","web-architecture-patterns"],"removed_bindings":["branch-diff-static-review","react-page-implementation"],"forbidden_claim_hits":0,"errors":0,"warnings":37,"deferred":0,"passes":3,"checks":{"reviewers":{"architect":["code-review","compliance"],"backend":["code-review","qa"],"code-review":["none"],"compliance":["none"],"devops":["compliance","code-review"],"frontend":["code-review","qa"],"harness":["code-review","compliance","qa"],"pm":["architect"],"qa":["code-review"],"quota-control":["compliance"]}}}
+RESULT PASS (all checks ran; skill-existence enforced strictly)
+exit code 0
+[exit code: 0]
+
+--------------------------------------------------------------------------------
+[F4] full tree copy, registry.yaml mutated: scout flipped to local-definition
+     expected: ERROR (substitute count 4 != 5) + exit 1
+--------------------------------------------------------------------------------
+$ node /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-reg/roles/_tools/validate_roles.js
+DSH role-layer validator (WS-B)
+command: node roles/_tools/validate_roles.js
+root: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-reg
+roles_dir: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-reg/roles
+skills_dir: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-reg/skills (present)
+missing_skills_file: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-reg/skills/MISSING-SKILLS.md (present)
+---
+ERROR    registry           dsh-builtin-substitute 数量为 4，应为 5
+ERROR    registry           local-definition 数量为 11，应为 10
+ERROR    registry           scout 是 local-definition 但 local_definition_imported != true
+ERROR    registry           scout 缺少 local_definition 路径
+PASS     role-file          10/10 预期角色文件存在: architect, backend, code-review, compliance, devops, frontend, harness, pm, qa, quota-control
+PASS     forbidden-claims   未发现未标注的虚假能力声明（write_scopes 强制执行 / 自动释放所有权 / 角色级 OS 沙箱）
+---
+SUMMARY {"roles_expected":10,"roles_found":10,"registry_roles":15,"local_definitions":11,"substitutes":4,"skill_check_ran":true,"skills_dir_present":true,"dangling_bindings":[],"removed_bindings":["branch-diff-static-review","react-page-implementation"],"forbidden_claim_hits":0,"errors":4,"warnings":0,"deferred":0,"passes":2,"checks":{"reviewers":{"architect":["code-review","compliance"],"backend":["code-review","qa"],"code-review":["none"],"compliance":["none"],"devops":["compliance","code-review"],"frontend":["code-review","qa"],"harness":["code-review","compliance","qa"],"pm":["architect"],"qa":["code-review"],"quota-control":["compliance"]}}}
+RESULT FAIL (4 error(s))
+exit code 1
+[exit code: 1]
+
+--------------------------------------------------------------------------------
+[F5] full tree copy, roles/frontend.md mutated: independent_reviewer -> [backend]
+     expected: ERROR (implementation role reviewed only by an implementation role) + exit 1
+--------------------------------------------------------------------------------
+$ node /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-rev/roles/_tools/validate_roles.js
+DSH role-layer validator (WS-B)
+command: node roles/_tools/validate_roles.js
+root: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-rev
+roles_dir: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-rev/roles
+skills_dir: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-rev/skills (present)
+missing_skills_file: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-rev/skills/MISSING-SKILLS.md (present)
+---
+ERROR    reviewer           frontend.md 是实现角色，但 independent_reviewer 只由实现角色组成: backend
+PASS     role-file          10/10 预期角色文件存在: architect, backend, code-review, compliance, devops, frontend, harness, pm, qa, quota-control
+PASS     forbidden-claims   未发现未标注的虚假能力声明（write_scopes 强制执行 / 自动释放所有权 / 角色级 OS 沙箱）
+PASS     registry           15 个角色覆盖完整，其中 10 个 local-definition、5 个 dsh-builtin-substitute
+---
+SUMMARY {"roles_expected":10,"roles_found":10,"registry_roles":15,"local_definitions":10,"substitutes":5,"skill_check_ran":true,"skills_dir_present":true,"dangling_bindings":[],"removed_bindings":["branch-diff-static-review","react-page-implementation"],"forbidden_claim_hits":0,"errors":1,"warnings":0,"deferred":0,"passes":3,"checks":{"reviewers":{"architect":["code-review","compliance"],"backend":["code-review","qa"],"code-review":["none"],"compliance":["none"],"devops":["compliance","code-review"],"frontend":["backend"],"harness":["code-review","compliance","qa"],"pm":["architect"],"qa":["code-review"],"quota-control":["compliance"]}}}
+RESULT FAIL (1 error(s))
+exit code 1
+[exit code: 1]
+
+--------------------------------------------------------------------------------
+[F6] full tree copy, roles/pm.md mutated: acceptance_criteria renamed out of ## 派发合同
+     expected: ERROR (contract-fields) + exit 1
+--------------------------------------------------------------------------------
+$ node /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-ct/roles/_tools/validate_roles.js
+DSH role-layer validator (WS-B)
+command: node roles/_tools/validate_roles.js
+root: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-ct
+roles_dir: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-ct/roles
+skills_dir: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-ct/skills (present)
+missing_skills_file: /private/var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/tmp.He4g0D27yu/tree-ct/skills/MISSING-SKILLS.md (present)
+---
+ERROR    contract-fields    pm.md 派发合同缺少字段: acceptance_criteria
+PASS     role-file          10/10 预期角色文件存在: architect, backend, code-review, compliance, devops, frontend, harness, pm, qa, quota-control
+PASS     forbidden-claims   未发现未标注的虚假能力声明（write_scopes 强制执行 / 自动释放所有权 / 角色级 OS 沙箱）
+PASS     registry           15 个角色覆盖完整，其中 10 个 local-definition、5 个 dsh-builtin-substitute
+---
+SUMMARY {"roles_expected":10,"roles_found":10,"registry_roles":15,"local_definitions":10,"substitutes":5,"skill_check_ran":true,"skills_dir_present":true,"dangling_bindings":[],"removed_bindings":["branch-diff-static-review","react-page-implementation"],"forbidden_claim_hits":0,"errors":1,"warnings":0,"deferred":0,"passes":3,"checks":{"reviewers":{"architect":["code-review","compliance"],"backend":["code-review","qa"],"code-review":["none"],"compliance":["none"],"devops":["compliance","code-review"],"frontend":["code-review","qa"],"harness":["code-review","compliance","qa"],"pm":["architect"],"qa":["code-review"],"quota-control":["compliance"]}}}
+RESULT FAIL (1 error(s))
+exit code 1
+[exit code: 1]
+

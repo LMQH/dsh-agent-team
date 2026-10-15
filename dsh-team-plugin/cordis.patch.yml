@@ -1,0 +1,5 @@
+# 组合包补丁层：把本插件插入 Cordis 插件树。
+# 必须是 insert: 形式——裸 `- id:` 只会覆盖已存在的条目，新条目会被拒绝。
+- insert:
+    - id: team-workflow
+      name: '@local/dsh-team-workflow'

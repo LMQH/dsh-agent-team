@@ -1,0 +1,90 @@
+======================================================================
+DSH TEAM WORKFLOW / WS-C — mount (composition) validation evidence
+======================================================================
+generated-at : 2026-10-13T09:20:57Z
+dsh launcher : /Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh
+dsh version  : 0.2.0-rc.2
+app bundle   : /Applications/DeepSeek Harness.app  (read-only; never modified)
+desktop patch: ~/.dsh/profiles/desktop/cordis.patch.yml  (READ ONLY — WS-C never touched it)
+
+The 'desktop' profile cannot be booted from the CLI (the Electron app owns it:
+"managed exclusively by the Electron application"), so composition is validated
+on a DISPOSABLE profile created from the shipped 'headless' template, which WS-C
+deletes again afterwards.
+
+======================================================================
+STEP 0 — create the disposable profile
+======================================================================
+$ dsh --profile ws-c-probe --from-default-profile headless --dump-config
+   (--from-default-profile also BOOTS the profile afterwards; appending
+    --dump-config makes the command create-and-exit without needing a task)
+--- exit code: 0 ---
+--- first 2 lines of the composed default tree ---
+# == @deepseek-ai/dsh-base
+- id: tool-plugin-manager
+    (...)
+$ ls -la ~/.dsh/profiles/ws-c-probe/
+total 32
+drwxr-xr-x@ 6 maxwell  staff  192 Oct 13 17:20 .
+drwx------@ 6 maxwell  staff  192 Oct 13 17:20 ..
+-rw-r--r--@ 1 maxwell  staff  217 Oct 13 17:20 cordis.patch.yml
+-rw-r--r--@ 1 maxwell  staff  223 Oct 13 17:20 cordis.yml
+-rw-r--r--@ 1 maxwell  staff  215 Oct 13 17:20 package.json
+-rw-r--r--@ 1 maxwell  staff   61 Oct 13 17:20 pnpm-workspace.yaml
+
+======================================================================
+STEP 1 — POSITIVE CONTROL: the delivered mount entry composes
+======================================================================
+$ cp policies/mount.patch.yml /tmp/ws-c-probe/mount.patch.yml
+$ dsh --profile ws-c-probe --patch /tmp/ws-c-probe/mount.patch.yml --dump-config
+--- exit code: 0 ---
+--- output is      386 lines; first 2 lines, then the composed entry ---
+# == @deepseek-ai/dsh-base
+- id: tool-plugin-manager
+    (...)
+--- the composed entry (grep -n -A 5 hooks-claude-code) ---
+381:- id: hooks-claude-code
+382:  name: '@deepseek-ai/dsh-hooks-claude-code'
+383-  config:
+384-    configPath: /Users/maxwell/.dsh/team/hooks.json
+385-    projectDir: /Users/maxwell/Documents/deepseek-harness/default-workspace
+386-    defaultTimeoutMs: 10000
+--- the patch layer marker that produced it ---
+380:# == /tmp/ws-c-probe/mount.patch.yml
+--- 'dsh: ' warning lines anywhere in stdout+stderr (expected 0): 0
+--- total composed entries: 97
+
+======================================================================
+STEP 2 — NEGATIVE CONTROL: a bare '- id: hooks-claude-code' entry (the form
+         suggested by the task brief) is REJECTED and does NOT mount the plugin
+======================================================================
+$ cat /tmp/ws-c-probe/bare-id.patch.yml
+- id: hooks-claude-code
+  name: '@deepseek-ai/dsh-hooks-claude-code'
+  config:
+    configPath: /Users/maxwell/.dsh/team/hooks.json
+    projectDir: /Users/maxwell/Documents/deepseek-harness/default-workspace
+$ dsh --profile ws-c-probe --patch /tmp/ws-c-probe/bare-id.patch.yml --dump-config
+--- exit code: 0 ---
+--- first 3 lines of stdout+stderr ---
+dsh: [/tmp/ws-c-probe/bare-id.patch.yml] patch: entry "hooks-claude-code" not found
+# == @deepseek-ai/dsh-base
+- id: tool-plugin-manager
+--- occurrences of 'hooks-claude-code' in the dump: 1
+    (that single occurrence IS the warning line; the plugin is absent from the
+     composed tree, so no hook would ever run)
+1:dsh: [/tmp/ws-c-probe/bare-id.patch.yml] patch: entry "hooks-claude-code" not found
+
+======================================================================
+CONCLUSION
+======================================================================
+* POSITIVE: policies/mount.patch.yml composes cleanly (exit 0, zero warnings, the
+  plugin present in the composed tree with exactly the delivered config).
+* NEGATIVE: the bare '- id: hooks-claude-code' form does NOT work. The profile patch
+  layer is id-targeted for OVERRIDES, so a plugin that ships in no bundle must be
+  added with 'insert:'. This is a correction to the contract given in the brief.
+* LIMIT: --dump-config proves COMPOSITION ONLY. It does not run the plugin's apply(),
+  so it does not prove policies/hooks.json parses or that a hook blocks. That is
+  covered by policies/tests/bridge-probe.js (evidence/policy-bridge-mapping.txt),
+  which loads the SHIPPED config parser and the SHIPPED hook codec out of app.asar.
+======================================================================

@@ -1,0 +1,149 @@
+==================================================================================
+skills-inventory.txt — every file delivered by WS-A (skills migration)
+root            : /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/skills
+date (UTC)      : 2026-10-13T09:21:13Z
+content         : 24 skill bundles (15 team + 9 shared) + 2 root documents + 1 tool
+                  = 39 files, verified by skills/_tools/validate_skills.js
+companion       : evidence/skills-validate.txt (validator stdout+stderr+exit codes, source
+                  SHA256SUMS check, carried-resource execution, negative self-test tally,
+                  independent yaml@2.9.1 frontmatter cross-check, tree fingerprint)
+==================================================================================
+
+BYTES    SHA256-12     PATH (relative to skills/)
+-----    ---------     -------------------------
+
+## agent-usage-ledger   (1 file(s), 2448 bytes)
+2448     3477c68c1cb8  agent-usage-ledger/SKILL.md
+
+## anti-fake-testing   (1 file(s), 8929 bytes)
+8929     539e582a5b41  anti-fake-testing/SKILL.md
+
+## architecture-delivery   (1 file(s), 2735 bytes)
+2735     5c8369d80ece  architecture-delivery/SKILL.md
+
+## backend-delivery   (1 file(s), 2521 bytes)
+2521     f610ec6635a4  backend-delivery/SKILL.md
+
+## code-review-defect-patterns   (2 file(s), 8789 bytes)
+6097     834e798011ce  code-review-defect-patterns/SKILL.md
+2692     c4718123cec2  code-review-defect-patterns/references/architecture-decision-conflicts.md
+
+## code-review-delivery   (1 file(s), 515 bytes)
+515      bfdddfe8f79b  code-review-delivery/SKILL.md
+
+## compliance-delivery   (1 file(s), 536 bytes)
+536      50ec47d1c69a  compliance-delivery/SKILL.md
+
+## cross-team-contract-alignment   (1 file(s), 5562 bytes)
+5562     c1c1756fe44f  cross-team-contract-alignment/SKILL.md
+
+## database-design-checklist   (1 file(s), 9290 bytes)
+9290     df29f20933ad  database-design-checklist/SKILL.md
+
+## docker-artifact-safety   (1 file(s), 7495 bytes)
+7495     b3b4f5f19cc2  docker-artifact-safety/SKILL.md
+
+## frontend-delivery   (1 file(s), 2019 bytes)
+2019     2b9bb9079f7f  frontend-delivery/SKILL.md
+
+## harness-delivery   (1 file(s), 1884 bytes)
+1884     972426635f9e  harness-delivery/SKILL.md
+
+## hermes-obsidian   (5 file(s), 15954 bytes)
+2510     9ed682d63dd0  hermes-obsidian/SKILL.md
+2149     fcf53010401c  hermes-obsidian/scripts/wiki_dedup.py
+5876     d427048cad9c  hermes-obsidian/scripts/wiki_ingest.py
+4122     cb72ea755677  hermes-obsidian/scripts/wiki_lint.py
+1297     8053272b5326  hermes-obsidian/tests/test_wiki_lint.py
+
+## operations-delivery   (1 file(s), 4725 bytes)
+4725     e6b3b4882284  operations-delivery/SKILL.md
+
+## pm-requirements   (1 file(s), 13215 bytes)
+13215    33fcbf8e908c  pm-requirements/SKILL.md
+
+## product-delivery   (1 file(s), 481 bytes)
+481      e7eca6aad05c  product-delivery/SKILL.md
+
+## qa-delivery   (1 file(s), 3214 bytes)
+3214     68563dd05976  qa-delivery/SKILL.md
+
+## quota-governance   (1 file(s), 668 bytes)
+668      1161dc1366b4  quota-governance/SKILL.md
+
+## react-best-practices   (1 file(s), 13380 bytes)
+13380    3ca15a2064f4  react-best-practices/SKILL.md
+
+## security-test-matrix   (1 file(s), 7398 bytes)
+7398     0c6e5d84a60f  security-test-matrix/SKILL.md
+
+## team-workflow   (1 file(s), 16768 bytes)
+16768    f284d4af5915  team-workflow/SKILL.md
+
+## technical-design-delivery   (1 file(s), 3758 bytes)
+3758     825de7e186c4  technical-design-delivery/SKILL.md
+
+## verification-before-completion   (1 file(s), 6805 bytes)
+6805     0ec756be5162  verification-before-completion/SKILL.md
+
+## web-architecture-patterns   (8 file(s), 53324 bytes)
+9937     6d350bc6f3bb  web-architecture-patterns/SKILL.md
+3713     adea92429224  web-architecture-patterns/references/api-platform-compatibility.md
+4522     5d25cc5a8b56  web-architecture-patterns/references/demo-frontend-with-docker.md
+6859     00f3872a6848  web-architecture-patterns/references/dual-platform-html-test-tool.md
+7675     9b80d41c605f  web-architecture-patterns/references/html-to-react-spa-refactor.md
+3628     2d7a8fb12767  web-architecture-patterns/references/kling-ai-api.md
+4348     5fed4a52e418  web-architecture-patterns/references/new-api-videos-endpoint.md
+12642    6f6da68258bf  web-architecture-patterns/references/proxy-aware-adapters.md
+
+## skills-root documents and tooling
+9383     2c497c27c58b  MISSING-SKILLS.md
+26745    95549c62075a  CONVERSION-NOTES.md
+20291    bca75f6ce9d9  _tools/validate_skills.js
+
+----------------------------------------------------------------------------------
+TOTAL DELIVERED: 39 files, 248832 bytes
+  = 24 SKILL.md + 12 carried resources + 2 root documents + 1 tool
+
+Per-bundle byte totals:
+  agent-usage-ledger                          2448 bytes
+  anti-fake-testing                           8929 bytes
+  architecture-delivery                       2735 bytes
+  backend-delivery                            2521 bytes
+  code-review-defect-patterns                 8789 bytes
+  code-review-delivery                         515 bytes
+  compliance-delivery                          536 bytes
+  cross-team-contract-alignment               5562 bytes
+  database-design-checklist                   9290 bytes
+  docker-artifact-safety                      7495 bytes
+  frontend-delivery                           2019 bytes
+  harness-delivery                            1884 bytes
+  hermes-obsidian                            15954 bytes
+  operations-delivery                         4725 bytes
+  pm-requirements                            13215 bytes
+  product-delivery                             481 bytes
+  qa-delivery                                 3214 bytes
+  quota-governance                             668 bytes
+  react-best-practices                       13380 bytes
+  security-test-matrix                        7398 bytes
+  team-workflow                              16768 bytes
+  technical-design-delivery                   3758 bytes
+  verification-before-completion              6805 bytes
+  web-architecture-patterns                  53324 bytes
+  SUBTOTAL (24 skill bundles)               192413 bytes
+  MISSING-SKILLS.md                           9383 bytes
+  CONVERSION-NOTES.md                        26745 bytes
+  _tools/validate_skills.js                  20291 bytes
+
+----------------------------------------------------------------------------------
+Evidence outputs (companion files; not migration inputs):
+  skills-validate.txt                        33039 bytes  sha256:936d227df34b
+    validator stdout+stderr+exit code, source SHA256SUMS check, carried-resource execution,
+    negative self-test tally, independent yaml@2.9.1 frontmatter cross-check, tree fingerprint.
+  skills-inventory.txt                     (this file)
+    every delivered file with byte size and sha256, per-bundle byte totals.
+
+----------------------------------------------------------------------------------
+Aggregate tree fingerprint (canonical: sha256 over sorted, newline-terminated
+'<sha256>  <path>' lines):
+6083d329fdba4a34f002261a21f2fbc2a8990f6c59a0e8c81f892284575d988a  -

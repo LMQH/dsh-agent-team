@@ -1,0 +1,43 @@
+{
+  "name": "@local/dsh-team-workflow",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "Agent 团队工作流：复刻资源包的 10 个团队角色（职责、产物、能力边界），由主 Agent 按需派发",
+  "icon": "./icon.svg",
+  "dependencies": {
+    "@deepseek-ai/schemastery": "3.18.4"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./roles.json": "./roles.json",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "roles.json",
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale/*.json"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-api-session-controller",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-primitives",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-workspace"
+      ]
+    }
+  }
+}

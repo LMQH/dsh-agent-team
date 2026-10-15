@@ -1,0 +1,62 @@
+shipped hook-protocol  : @deepseek-ai/dsh-hook-protocol (15761 bytes)
+shipped config region  : @deepseek-ai/dsh-hooks-claude-code (3683 bytes)
+hooks.json             : /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/policies/hooks.json
+scratch                : /var/folders/rd/3snkfvz53f599pk3c32j6q840000gn/T/dsh-bridge-probe-7ws0jy
+
+=== 1. the shipped parser accepts policies/hooks.json ===
+  ok   parseClaudeCodeConfig does not throw (no invalid-matcher SyntaxError)
+  ok   no non-command hooks were skipped
+  ok   PreToolUse groups === 3
+  ok   PostToolUse groups === 1
+  ok   no Stop hook is configured (Stop-free, per the contract)
+  ok   every hook is a command hook with a timeout
+  ok   every hook timeout is a sane 10s
+  ok   every matcher passes the shipped matcherDiagnostic (accepted as a valid claude-code matcher)
+
+=== 2. matchers select the real DSH tool names ===
+  ok   matcher routing for "write" -> 1 group(s)
+  ok   matcher routing for "edit" -> 1 group(s)
+  ok   matcher routing for "str_replace_editor" -> 1 group(s)
+  ok   matcher routing for "bash" -> 1 group(s)
+  ok   matcher routing for "spawn_teammate" -> 1 group(s)
+  ok   matcher routing for "subagent" -> 1 group(s)
+  ok   matcher routing for "subagent_fork" -> 1 group(s)
+  ok   matcher routing for "workflow" -> 1 group(s)
+  ok   matcher routing for "read" -> 0 group(s)
+  ok   matcher routing for "read_image" -> 0 group(s)
+  ok   matcher routing for "glob" -> 0 group(s)
+  ok   matcher routing for "grep" -> 0 group(s)
+  ok   matcher routing for "send_message" -> 0 group(s)
+  ok   matcher routing for "list_agents" -> 0 group(s)
+  ok   matcher routing for "wait_agent" -> 0 group(s)
+  ok   matcher routing for "interrupt_agent" -> 0 group(s)
+  ok   matcher routing for "team_task_create" -> 0 group(s)
+  ok   matcher routing for "team_task_list" -> 0 group(s)
+  ok   matcher routing for "team_task_get" -> 0 group(s)
+  ok   matcher routing for "team_task_update" -> 0 group(s)
+  ok   matcher routing for "todo_write" -> 0 group(s)
+  ok   matcher routing for "present" -> 0 group(s)
+  ok   matcher routing for "ask_user_question" -> 0 group(s)
+  ok   a word-and-pipe matcher is LITERAL: "write|edit|str_replace_editor" does not match "writer"
+  ok   a word-and-pipe matcher is LITERAL: "spawn_teammate|subagent" does not match "spawn_teammate_extra"
+  ok   a non-word matcher IS a regex: "subagent.*" matches "subagent_fork"
+
+=== 3. a blocking hook run folds to decision "deny" ===
+  hook exit=2
+  hook stderr=DSH-POLICY-DENY {"code":"SECRET_ENV","tool":"write","rule":"secret.env-file","target":"/Users/maxwell/Documents/deepseek-harness/default-workspace/.env","auth":null,"reason":"Refusing to write the secret-bearing environment file \".env\". Team policy blocks .env and .env.* at the tool layer; write a documented template (.env.example) instead, or have the human edit the real file outside the agent. (resolved: /Users/maxwell/Documents/deepseek-harness/default-workspace/.env)"}
+  ok   exit code 2 -> parsed decision === "block"
+  ok   merged decision === "deny" (the harness denies the tool call)
+  ok   merged reason is the hook stderr verbatim
+  ok   the merged reason carries the machine-readable code SECRET_ENV
+
+=== 4. an allowing hook run folds to decision "none" (tool proceeds) ===
+  ok   allowed hook exit code === 0
+  ok   merged decision === "none" (no hook objected)
+
+=== 5. fail-open hazard: a crashing hook is NON-blocking ===
+  ok   exit code 1 -> no decision field
+  ok   merged decision === "none" -> the tool WOULD PROCEED (fail-open)
+  ok   a missing/failed hook binary is likewise non-blocking
+
+=== SUMMARY ===
+43 passed, 0 failed, 43 total

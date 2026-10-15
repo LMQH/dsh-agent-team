@@ -1,0 +1,66 @@
+工具面实测证据 · 2026-10-14
+============================================================
+
+背景
+----
+`verify-acceptance.js` 的检项 5 里有一条旧假设：「`spawn_teammate` 是本部署不存在的工具名」。
+该假设写在官方「智能体团队」组合包（`@deepseek-ai/dsh-experimental-agent-team-profile`）
+被加入 profile 之前。现在组合包已启用，这条假设需要重新核。
+
+实测（本会话真实调用，非推断）
+------------------------------
+1) `team_task_list` 返回 {"tasks":[]} —— 官方的共享任务看板工具已注册且可用。
+   由此可推知同包的 `spawn_teammate` / `send_message` / `list_agents` / `wait_agent` /
+   `interrupt_agent` / `team_task_create|get|update` 一并在线
+   （它们同属 `@deepseek-ai/dsh-experimental-tool-agent-team` 的同一个注册函数，
+   见 `lib/index.js` 的 `name: "spawn_teammate"` 等 9 个条目）。
+
+2) 与此同时，`subagent` / `subagent_fork` 也仍然可用 —— 本次修复过程中实际派发了两个
+   `subagent` 并正常返回。即：两种派发通路在本部署**同时存在**。
+
+3) 官方组合包的 patch 里确实写了要禁用它们：
+   `@deepseek-ai/dsh-experimental-agent-team-profile/cordis.patch.yml`
+     - id: tool-subagent-control      disabled: true
+     - id: tool-subagent-list-agents  disabled: true
+     - id: tool-subagent              disabled: true
+     - id: tool-subagent-fork         disabled: true
+   已解析落盘的 `~/.dsh/profiles/desktop/cordis.yml` 里这四行也确实是 `disabled: true`。
+   但运行进程里 `subagent` 实测可用。
+
+结论与处置
+----------
+· 事实：`spawn_teammate` 等工具在本部署**存在**。检项 5 旧措辞「本部署不存在的工具名」不准确，
+  已改为「由官方插件提供的工具名（本插件不得声明）」，约束强度不变（本插件交付物里仍不得出现该串）。
+· 仍不改的判定：该工具是否出现**取决于官方组合包是否启用**，不属于本插件的契约。
+  因此插件自己的 README/roles/AGENTS 一律不声明它——这条门保持原样，不放宽。
+· 未解决（记录在案，不影响本次修复）：官方 patch 声明禁用 `tool-subagent*`，但运行进程里
+  `subagent` 仍可用。两者不一致的成因未定位（可能是 agent preset 作用域内的独立实例，
+  cordis.yml 只反映顶层实例的 disabled）。本次不动它。
+
+追加（同日，用户决定后）
+------------------------------------------------------------
+用户确认了两件事：
+ 1) 「同时启用两个插件」后的真实现象 = **GUI 起不来 / 停在 Failed to load plugins**。
+    这直接证实了整页失败链条（而不是"少一张卡片"），与逆向报告 §2.2 的 boot 审计一致。
+ 2) 团队角色的默认派发通路**改为 spawn_teammate**。
+
+因此检项 5 里「禁用 spawn_teammate 字样」的旧假设被**反转**，改为正反两条新门：
+ · 7a：`~/.dsh/AGENTS.md` 必须含「派发团队角色一律用 `spawn_teammate`」
+ · 7b：AGENTS.md 与 README.md 都不得再出现旧写法「派发用 `subagent`」
+（这不是放宽门——同一件事从"不许提"变成"必须按新通路写"，强度不减。）
+
+策略层无需改动：`policy_check.js` 的 DISPATCH_TOOLS / ALWAYS_GATED_DISPATCH 与
+`hooks.json` 的三个 matcher 早已包含 `spawn_teammate`（2026-10-14 15:00 那版）。
+本次只改规则与文档层：`_tools/sync-agents-md.js` → `~/.dsh/AGENTS.md`、`dsh-team-plugin/README.md`。
+
+反证（临时副本 `_tools` + `dsh-team-plugin` + 伪造 DSH_HOME，真文件未动）：
+  把 AGENTS.md 与 README.md 换回旧写法 → 7a FAIL（未声明）、7b FAIL（两文件仍含旧写法）。
+  真项目保持 21/21。
+
+未实调：`spawn_teammate` 本身没有实跑（会创建常驻成员，用户未要求实际派人）。
+已实调可用的同族证据：`list_agents` 返回 lead、`team_task_list` 返回空看板，说明官方团队工具面在线。
+
+另记两条工具层行为（AGENTS.md 那张"硬拒"表是真的在拦，不是提示词声明）：
+ · 构造反证时在工作区外做递归强制删除，被 policy_check.js 直接 DENY（code RM_RECURSIVE_FORCE）。
+ · 该规则按命令文本匹配：连"在文档里描述这条命令"的 heredoc 也被拒了一次（假阳性）。
+   所以这类文字不要写进 bash 命令，改用文件工具写。

@@ -1,0 +1,158 @@
+profile：/Users/maxwell/.dsh/profiles/desktop
+清单包数：186；含客户端 bundle 的：67
+扫描坐标："team-workflow"
+
+--- 客户端 bundle 清单 ---
+  @deepseek-ai/dsh-api-gateway  ←  /dsh/node_modules/@deepseek-ai/dsh-api-gateway/lib/client.js
+  @deepseek-ai/dsh-api-job-controller  ←  /dsh/node_modules/@deepseek-ai/dsh-api-job-controller/lib/client.js
+  @deepseek-ai/dsh-api-remotes  ←  /dsh/node_modules/@deepseek-ai/dsh-api-remotes/lib/client.js
+  @deepseek-ai/dsh-api-session-controller  ←  /dsh/node_modules/@deepseek-ai/dsh-api-session-controller/lib/client.js
+  @deepseek-ai/dsh-api-terminal-controller  ←  /dsh/node_modules/@deepseek-ai/dsh-api-terminal-controller/lib/client.js
+  @deepseek-ai/dsh-api-workspace-controller  ←  /dsh/node_modules/@deepseek-ai/dsh-api-workspace-controller/lib/client.js
+  @deepseek-ai/dsh-api-workspace-files  ←  /dsh/node_modules/@deepseek-ai/dsh-api-workspace-files/lib/client.js
+  @deepseek-ai/dsh-client-connection  ←  /dsh/node_modules/@deepseek-ai/dsh-client-connection/lib/client.js
+  @deepseek-ai/dsh-client-file-upload  ←  /dsh/node_modules/@deepseek-ai/dsh-client-file-upload/lib/client.js
+  @deepseek-ai/dsh-client-hmr  ←  /dsh/node_modules/@deepseek-ai/dsh-client-hmr/lib/client.js
+  @deepseek-ai/dsh-client-locale  ←  /dsh/node_modules/@deepseek-ai/dsh-client-locale/lib/client.js
+  @deepseek-ai/dsh-client-modules  ←  /dsh/node_modules/@deepseek-ai/dsh-client-modules/lib/client.js
+  @deepseek-ai/dsh-client-product-analytics  ←  /dsh/node_modules/@deepseek-ai/dsh-client-product-analytics/lib/client.js
+  @deepseek-ai/dsh-client-resources  ←  /dsh/node_modules/@deepseek-ai/dsh-client-resources/lib/client.js
+  @deepseek-ai/dsh-client-shortcuts  ←  /dsh/node_modules/@deepseek-ai/dsh-client-shortcuts/lib/client.js
+  @deepseek-ai/dsh-client-ui-agent-preset  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-agent-preset/lib/client.js
+  @deepseek-ai/dsh-client-ui-approval  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-approval/lib/client.js
+  @deepseek-ai/dsh-client-ui-attachment  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-attachment/lib/client.js
+  @deepseek-ai/dsh-client-ui-brand-official  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-brand-official/lib/client.js
+  @deepseek-ai/dsh-client-ui-chat  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-chat/lib/client.js
+  @deepseek-ai/dsh-client-ui-commands  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-commands/lib/client.js
+  @deepseek-ai/dsh-client-ui-conversation  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-conversation/lib/client.js
+  @deepseek-ai/dsh-client-ui-cordis  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-cordis/lib/client.js
+  @deepseek-ai/dsh-client-ui-deliverables  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-deliverables/lib/client.js
+  @deepseek-ai/dsh-client-ui-goal  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-goal/lib/client.js
+  @deepseek-ai/dsh-client-ui-input-trigger  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-input-trigger/lib/client.js
+  @deepseek-ai/dsh-client-ui-jobs  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-jobs/lib/client.js
+  @deepseek-ai/dsh-client-ui-layout  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-layout/lib/client.js
+  @deepseek-ai/dsh-client-ui-message-feedback  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-message-feedback/lib/client.js
+  @deepseek-ai/dsh-client-ui-model-selection  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-model-selection/lib/client.js
+  @deepseek-ai/dsh-client-ui-open-in-app  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-open-in-app/lib/client.js
+  @deepseek-ai/dsh-client-ui-permission-presets  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-permission-presets/lib/client.js
+  @deepseek-ai/dsh-client-ui-plan  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-plan/lib/client.js
+  @deepseek-ai/dsh-client-ui-plugin-manager  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-plugin-manager/lib/client.js
+  @deepseek-ai/dsh-client-ui-reference  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-reference/lib/client.js
+  @deepseek-ai/dsh-client-ui-renderer  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-renderer/lib/client.js
+  @deepseek-ai/dsh-client-ui-session  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-session/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-account  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-account/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-agent-loop  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-agent-loop/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-general  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-general/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-models  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-models/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-plugin-inventory  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-plugin-inventory/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-plugins  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-plugins/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-session-log  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-session-log/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-shell  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-shell/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-subagent  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-subagent/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-web-search  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-web-search/lib/client.js
+  @deepseek-ai/dsh-client-ui-shortcuts  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-shortcuts/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-browser  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-browser/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-documentpreview  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-documentpreview/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-files  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-files/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-right  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-right/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-terminal  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-terminal/lib/client.js
+  @deepseek-ai/dsh-client-ui-skill  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-skill/lib/client.js
+  @deepseek-ai/dsh-client-ui-subagent  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-subagent/lib/client.js
+  @deepseek-ai/dsh-client-ui-theme  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-theme/lib/client.js
+  @deepseek-ai/dsh-client-ui-tool  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-tool/lib/client.js
+  @deepseek-ai/dsh-client-ui-trajectory  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-trajectory/lib/client.js
+  @deepseek-ai/dsh-client-ui-user-questions  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-user-questions/lib/client.js
+  @deepseek-ai/dsh-client-ui-workflow-run  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-workflow-run/lib/client.js
+  @deepseek-ai/dsh-client-ui-workspace  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-workspace/lib/client.js
+  @deepseek-ai/dsh-cordis-client-runner  ←  /dsh/node_modules/@deepseek-ai/dsh-cordis-client-runner/lib/client.js
+  @deepseek-ai/dsh-session-log-export  ←  /dsh/node_modules/@deepseek-ai/dsh-session-log-export/lib/client.js
+  @deepseek-ai/dsh-typert-registry  ←  /dsh/node_modules/@deepseek-ai/dsh-typert-registry/lib/client.js
+  @local/dsh-team-workflow  ←  /Users/maxwell/.dsh/profiles/desktop/node_modules/@local/dsh-team-workflow/client.js
+
+--- 坐标占用 ---
+  @local/dsh-team-workflow
+      "team-workflow" × 11  … _tools/build-client.js`。 * * 自有身份的页头卡片： * slot id = team-workflow * locale ns = dsh-team-workflow * CSS 前缀…
+
+--- 焦点包 ---
+  @local/dsh-team-workflow  ←  /Users/maxwell/.dsh/profiles/desktop/node_modules/@local/dsh-team-workflow/client.js；占用 "team-workflow"
+profile：/Users/maxwell/.dsh/profiles/desktop
+清单包数：186；含客户端 bundle 的：67
+扫描坐标："agent-team"
+
+--- 客户端 bundle 清单 ---
+  @deepseek-ai/dsh-api-gateway  ←  /dsh/node_modules/@deepseek-ai/dsh-api-gateway/lib/client.js
+  @deepseek-ai/dsh-api-job-controller  ←  /dsh/node_modules/@deepseek-ai/dsh-api-job-controller/lib/client.js
+  @deepseek-ai/dsh-api-remotes  ←  /dsh/node_modules/@deepseek-ai/dsh-api-remotes/lib/client.js
+  @deepseek-ai/dsh-api-session-controller  ←  /dsh/node_modules/@deepseek-ai/dsh-api-session-controller/lib/client.js
+  @deepseek-ai/dsh-api-terminal-controller  ←  /dsh/node_modules/@deepseek-ai/dsh-api-terminal-controller/lib/client.js
+  @deepseek-ai/dsh-api-workspace-controller  ←  /dsh/node_modules/@deepseek-ai/dsh-api-workspace-controller/lib/client.js
+  @deepseek-ai/dsh-api-workspace-files  ←  /dsh/node_modules/@deepseek-ai/dsh-api-workspace-files/lib/client.js
+  @deepseek-ai/dsh-client-connection  ←  /dsh/node_modules/@deepseek-ai/dsh-client-connection/lib/client.js
+  @deepseek-ai/dsh-client-file-upload  ←  /dsh/node_modules/@deepseek-ai/dsh-client-file-upload/lib/client.js
+  @deepseek-ai/dsh-client-hmr  ←  /dsh/node_modules/@deepseek-ai/dsh-client-hmr/lib/client.js
+  @deepseek-ai/dsh-client-locale  ←  /dsh/node_modules/@deepseek-ai/dsh-client-locale/lib/client.js
+  @deepseek-ai/dsh-client-modules  ←  /dsh/node_modules/@deepseek-ai/dsh-client-modules/lib/client.js
+  @deepseek-ai/dsh-client-product-analytics  ←  /dsh/node_modules/@deepseek-ai/dsh-client-product-analytics/lib/client.js
+  @deepseek-ai/dsh-client-resources  ←  /dsh/node_modules/@deepseek-ai/dsh-client-resources/lib/client.js
+  @deepseek-ai/dsh-client-shortcuts  ←  /dsh/node_modules/@deepseek-ai/dsh-client-shortcuts/lib/client.js
+  @deepseek-ai/dsh-client-ui-agent-preset  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-agent-preset/lib/client.js
+  @deepseek-ai/dsh-client-ui-approval  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-approval/lib/client.js
+  @deepseek-ai/dsh-client-ui-attachment  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-attachment/lib/client.js
+  @deepseek-ai/dsh-client-ui-brand-official  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-brand-official/lib/client.js
+  @deepseek-ai/dsh-client-ui-chat  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-chat/lib/client.js
+  @deepseek-ai/dsh-client-ui-commands  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-commands/lib/client.js
+  @deepseek-ai/dsh-client-ui-conversation  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-conversation/lib/client.js
+  @deepseek-ai/dsh-client-ui-cordis  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-cordis/lib/client.js
+  @deepseek-ai/dsh-client-ui-deliverables  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-deliverables/lib/client.js
+  @deepseek-ai/dsh-client-ui-goal  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-goal/lib/client.js
+  @deepseek-ai/dsh-client-ui-input-trigger  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-input-trigger/lib/client.js
+  @deepseek-ai/dsh-client-ui-jobs  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-jobs/lib/client.js
+  @deepseek-ai/dsh-client-ui-layout  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-layout/lib/client.js
+  @deepseek-ai/dsh-client-ui-message-feedback  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-message-feedback/lib/client.js
+  @deepseek-ai/dsh-client-ui-model-selection  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-model-selection/lib/client.js
+  @deepseek-ai/dsh-client-ui-open-in-app  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-open-in-app/lib/client.js
+  @deepseek-ai/dsh-client-ui-permission-presets  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-permission-presets/lib/client.js
+  @deepseek-ai/dsh-client-ui-plan  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-plan/lib/client.js
+  @deepseek-ai/dsh-client-ui-plugin-manager  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-plugin-manager/lib/client.js
+  @deepseek-ai/dsh-client-ui-reference  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-reference/lib/client.js
+  @deepseek-ai/dsh-client-ui-renderer  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-renderer/lib/client.js
+  @deepseek-ai/dsh-client-ui-session  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-session/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-account  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-account/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-agent-loop  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-agent-loop/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-general  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-general/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-models  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-models/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-plugin-inventory  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-plugin-inventory/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-plugins  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-plugins/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-session-log  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-session-log/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-shell  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-shell/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-subagent  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-subagent/lib/client.js
+  @deepseek-ai/dsh-client-ui-settings-web-search  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-settings-web-search/lib/client.js
+  @deepseek-ai/dsh-client-ui-shortcuts  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-shortcuts/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-browser  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-browser/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-documentpreview  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-documentpreview/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-files  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-files/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-right  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-right/lib/client.js
+  @deepseek-ai/dsh-client-ui-sidebar-terminal  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-sidebar-terminal/lib/client.js
+  @deepseek-ai/dsh-client-ui-skill  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-skill/lib/client.js
+  @deepseek-ai/dsh-client-ui-subagent  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-subagent/lib/client.js
+  @deepseek-ai/dsh-client-ui-theme  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-theme/lib/client.js
+  @deepseek-ai/dsh-client-ui-tool  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-tool/lib/client.js
+  @deepseek-ai/dsh-client-ui-trajectory  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-trajectory/lib/client.js
+  @deepseek-ai/dsh-client-ui-user-questions  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-user-questions/lib/client.js
+  @deepseek-ai/dsh-client-ui-workflow-run  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-workflow-run/lib/client.js
+  @deepseek-ai/dsh-client-ui-workspace  ←  /dsh/node_modules/@deepseek-ai/dsh-client-ui-workspace/lib/client.js
+  @deepseek-ai/dsh-cordis-client-runner  ←  /dsh/node_modules/@deepseek-ai/dsh-cordis-client-runner/lib/client.js
+  @deepseek-ai/dsh-session-log-export  ←  /dsh/node_modules/@deepseek-ai/dsh-session-log-export/lib/client.js
+  @deepseek-ai/dsh-typert-registry  ←  /dsh/node_modules/@deepseek-ai/dsh-typert-registry/lib/client.js
+  @local/dsh-team-workflow  ←  /Users/maxwell/.dsh/profiles/desktop/node_modules/@local/dsh-team-workflow/client.js
+
+--- 坐标占用 ---
+  @deepseek-ai/dsh-cordis-client-runner
+      "agent-team" × 2  …Action id 'subagent-catalog'", "experimental-client-ui-agent-team TeamAction id 'agent-team'" ], replaceRis…
+
+--- 焦点包 ---
+  @local/dsh-team-workflow  ←  /Users/maxwell/.dsh/profiles/desktop/node_modules/@local/dsh-team-workflow/client.js；未占用坐标

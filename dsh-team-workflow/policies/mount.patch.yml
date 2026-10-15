@@ -1,0 +1,29 @@
+# DSH Team Workflow — policy hook bridge mount (WS-C: policy + ledger layer)
+#
+# HOW TO APPLY
+#   Append the single entry below to the TOP-LEVEL YAML ARRAY of
+#     ~/.dsh/profiles/desktop/cordis.patch.yml
+#   (back the file up first — see policies/ACTIVATION.md).
+#
+# WHY `insert:` AND NOT A BARE `- id:`
+#   This layer is a *patch list*: an entry addressed by `id` overrides an entry
+#   that already exists in the composed profile. `hooks-claude-code` is not part
+#   of any shipped bundle, so an id-addressed entry is rejected with
+#     dsh: [...] patch: entry "hooks-claude-code" not found
+#   and the plugin is never mounted. `insert:` appends a new entry instead.
+#   Verified with `--dump-config` (see evidence/policy-mount-check.txt), which
+#   is where the platform contract in the task brief needs this correction.
+#
+- insert:
+    - id: hooks-claude-code
+      name: '@deepseek-ai/dsh-hooks-claude-code'
+      config:
+        # Copy policies/hooks.json to this path during install.
+        configPath: /Users/maxwell/.dsh/team/hooks.json
+        # Fallback per-hook timeout; every hook in hooks.json also sets timeout: 10.
+        defaultTimeoutMs: 10000
+        # NOTE (2026-10-14): `projectDir` is deliberately omitted in the live
+        # mount. Hooks already receive the session cwd, and pinning projectDir
+        # would hand every session the same directory regardless of where the
+        # user actually is. The live entry in
+        # ~/.dsh/profiles/desktop/cordis.patch.yml is the source of truth.

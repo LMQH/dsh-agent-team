@@ -1,0 +1,14 @@
+DSH role-layer validator (WS-B)
+command: node roles/_tools/validate_roles.js
+root: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow
+roles_dir: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/roles
+skills_dir: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/skills (present)
+missing_skills_file: /Users/maxwell/Documents/deepseek-harness/default-workspace/dsh-team-workflow/skills/MISSING-SKILLS.md (present)
+---
+PASS     role-file          10/10 预期角色文件存在: architect, backend, code-review, compliance, devops, frontend, harness, pm, qa, quota-control
+PASS     forbidden-claims   未发现未标注的虚假能力声明（write_scopes 强制执行 / 自动释放所有权 / 角色级 OS 沙箱）
+PASS     registry           15 个角色覆盖完整，其中 10 个 local-definition、5 个 dsh-builtin-substitute
+---
+SUMMARY {"roles_expected":10,"roles_found":10,"registry_roles":15,"local_definitions":10,"substitutes":5,"skill_check_ran":true,"skills_dir_present":true,"dangling_bindings":[],"removed_bindings":["branch-diff-static-review","react-page-implementation"],"forbidden_claim_hits":0,"errors":0,"warnings":0,"deferred":0,"passes":3,"checks":{"reviewers":{"architect":["code-review","compliance"],"backend":["code-review","qa"],"code-review":["none"],"compliance":["none"],"devops":["compliance","code-review"],"frontend":["code-review","qa"],"harness":["code-review","compliance","qa"],"pm":["architect"],"qa":["code-review"],"quota-control":["compliance"]}}}
+RESULT PASS (all checks ran; skill-existence enforced strictly)
+exit code 0

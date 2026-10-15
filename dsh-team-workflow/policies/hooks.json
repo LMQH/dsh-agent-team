@@ -1,0 +1,48 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "write|edit|str_replace_editor",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "NODE_BIN=\"\"; for c in \"$DSH_DESKTOP_NODE_EXECUTABLE\" /Applications/DeepSeek\\ Harness.app/Contents/Resources/runtime/primary-runtime/dependencies/node/bin/node; do if [ -n \"$c\" ] && [ -x \"$c\" ]; then NODE_BIN=\"$c\"; break; fi; done; [ -n \"$NODE_BIN\" ] || NODE_BIN=\"$(command -v node)\"; DSH_TEAM_LEDGER=\"${DSH_TEAM_LEDGER:-${DSH_HOME:-$HOME/.dsh}/team/ledger/agent-ledger.jsonl}\"; export DSH_TEAM_LEDGER; exec \"$NODE_BIN\" /Users/maxwell/workspace/code_space/agent-team-workflow/dsh-team-workflow/policies/policy_check.js",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "NODE_BIN=\"\"; for c in \"$DSH_DESKTOP_NODE_EXECUTABLE\" /Applications/DeepSeek\\ Harness.app/Contents/Resources/runtime/primary-runtime/dependencies/node/bin/node; do if [ -n \"$c\" ] && [ -x \"$c\" ]; then NODE_BIN=\"$c\"; break; fi; done; [ -n \"$NODE_BIN\" ] || NODE_BIN=\"$(command -v node)\"; DSH_TEAM_LEDGER=\"${DSH_TEAM_LEDGER:-${DSH_HOME:-$HOME/.dsh}/team/ledger/agent-ledger.jsonl}\"; export DSH_TEAM_LEDGER; exec \"$NODE_BIN\" /Users/maxwell/workspace/code_space/agent-team-workflow/dsh-team-workflow/policies/policy_check.js",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "spawn_teammate|subagent|subagent_fork|workflow",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "NODE_BIN=\"\"; for c in \"$DSH_DESKTOP_NODE_EXECUTABLE\" /Applications/DeepSeek\\ Harness.app/Contents/Resources/runtime/primary-runtime/dependencies/node/bin/node; do if [ -n \"$c\" ] && [ -x \"$c\" ]; then NODE_BIN=\"$c\"; break; fi; done; [ -n \"$NODE_BIN\" ] || NODE_BIN=\"$(command -v node)\"; DSH_TEAM_LEDGER=\"${DSH_TEAM_LEDGER:-${DSH_HOME:-$HOME/.dsh}/team/ledger/agent-ledger.jsonl}\"; export DSH_TEAM_LEDGER; exec \"$NODE_BIN\" /Users/maxwell/workspace/code_space/agent-team-workflow/dsh-team-workflow/policies/policy_check.js",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "spawn_teammate|subagent|subagent_fork|workflow",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "NODE_BIN=\"\"; for c in \"$DSH_DESKTOP_NODE_EXECUTABLE\" /Applications/DeepSeek\\ Harness.app/Contents/Resources/runtime/primary-runtime/dependencies/node/bin/node; do if [ -n \"$c\" ] && [ -x \"$c\" ]; then NODE_BIN=\"$c\"; break; fi; done; [ -n \"$NODE_BIN\" ] || NODE_BIN=\"$(command -v node)\"; DSH_TEAM_LEDGER=\"${DSH_TEAM_LEDGER:-${DSH_HOME:-$HOME/.dsh}/team/ledger/agent-ledger.jsonl}\"; export DSH_TEAM_LEDGER; exec \"$NODE_BIN\" /Users/maxwell/workspace/code_space/agent-team-workflow/dsh-team-workflow/policies/policy_check.js",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
